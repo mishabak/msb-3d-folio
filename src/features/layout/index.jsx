@@ -1,4 +1,4 @@
-import { string } from "prop-types";
+import { node } from "prop-types";
 import Header from "./header";
 import Footer from "./footer";
 
@@ -13,6 +13,6 @@ function Layout({ children }) {
 }
 
 Layout.propTypes = {
-  children: string,
+  children: node,
 };
 export default Layout;
