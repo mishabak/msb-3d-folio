@@ -1,14 +1,13 @@
 import { node } from "prop-types";
-import Header from "./header";
-import Footer from "./footer";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 
 function Layout({ children }) {
   return (
-    <section>
-      <Header />
+    <Canvas>
+      <OrbitControls/>
       {children}
-      <Footer />
-    </section>
+    </Canvas>
   );
 }
 
