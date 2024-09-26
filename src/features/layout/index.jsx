@@ -1,13 +1,18 @@
 import { node } from "prop-types";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 
 function Layout({ children }) {
   return (
-    <Canvas>
-      <OrbitControls/>
-      {children}
-    </Canvas>
+    <main className="h-screen w-screen">
+      <Canvas >
+        <PerspectiveCamera makeDefault position={[-40, 5, 10]} fov={50} />
+        <ambientLight intensity={3} />
+        <directionalLight/>
+        <OrbitControls />
+        {children}
+      </Canvas>
+    </main>
   );
 }
 
