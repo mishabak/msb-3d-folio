@@ -1,8 +1,9 @@
 import { useAnimations } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { array, object, string } from "prop-types";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import { array, object, string } from "prop-types";
+import { RigidBody } from "@react-three/rapier";
+
 function Door({
   name = "",
   nodes,
@@ -14,50 +15,82 @@ function Door({
 }) {
   const group = useRef();
   const { actions } = useAnimations(animations, group);
-  const [openDoor, setOpenDoor] = useState(false);
+  const [DoorState, SetDoorState] = useState("default");
 
   useEffect(() => {
-    if (openDoor) {
-      actions.Metal_lowAction.setLoop(THREE.LoopOnce);
-      actions.Metal_lowAction.clampWhenFinished = true;
-      actions.Metal_lowAction.clampWhenFinished = true;
-      actions.Metal_lowAction.play();
+    if (actions.Open_door && actions.Close_door) {
+      switch (DoorState) {
+        case "OPEN":
+          actions.Close_door.stop();
+          actions.Open_door.reset().setLoop(THREE.LoopOnce);
+          actions.Open_door.clampWhenFinished = true;
+          actions.Open_door.play();
+          break;
+
+        case "CLOSE":
+          actions.Open_door.stop();
+          actions.Close_door.reset().setLoop(THREE.LoopOnce);
+          actions.Close_door.clampWhenFinished = true;
+          actions.Close_door.play();
+          break;
+      }
     }
-  }, [openDoor]);
+  }, [DoorState, actions]);
+
+  const handleClick = () => {
+    if (!actions.Open_door || !actions.Close_door) return;
+    if (actions.Open_door.isRunning() || actions.Close_door.isRunning()) return;
+
+    switch (DoorState) {
+      case "CLOSE":
+        SetDoorState("OPEN");
+        break;
+      case "OPEN":
+        SetDoorState("CLOSE");
+        break;
+      default:
+        SetDoorState("OPEN");
+        break;
+    }
+  };
 
   return (
     <group
-      onClick={() => {
-        setOpenDoor(true);
-      }}
+      onClick={handleClick}
       ref={group}
       name={name}
       position={position}
       rotation={rotation}
       scale={scale}
     >
-      <mesh
-        name="Back_low"
-        castShadow
-        receiveShadow
-        geometry={nodes.Back_low.geometry}
-        material={materials.lambert1}
-      />
-      <mesh
-        name="Bricks_low"
-        castShadow
-        receiveShadow
-        geometry={nodes.Bricks_low.geometry}
-        material={materials.lambert1}
-      />
-      <mesh
-        name="Metal_low"
-        castShadow
-        receiveShadow
-        geometry={nodes.Metal_low.geometry}
-        material={materials.lambert1}
-        position={[-1.107, -0.065, -2.332]}
-      />
+      <RigidBody type="fixed" colliders="cuboid" mass={5}>
+        <mesh
+          name="Back_low"
+          castShadow
+          receiveShadow
+          geometry={nodes.Back_low.geometry}
+          material={materials.lambert1}
+        />
+      </RigidBody>
+      <RigidBody type="fixed" colliders="cuboid" mass={5}>
+        <mesh
+          name="Bricks_low"
+          castShadow
+          receiveShadow
+          geometry={nodes.Bricks_low.geometry}
+          material={materials.lambert1}
+        />
+      </RigidBody>
+      <RigidBody type="fixed">
+        <mesh
+          name="Metal_low"
+          castShadow
+          receiveShadow
+          geometry={nodes.Metal_low.geometry}
+          material={materials.lambert1}
+          position={[-1.107, -0.065, -2.332]}
+        />
+      </RigidBody>
     </group>
   );
 }
