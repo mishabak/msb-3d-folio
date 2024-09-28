@@ -16,7 +16,12 @@ function Door({
   const group = useRef();
   const { actions } = useAnimations(animations, group);
   const [DoorState, SetDoorState] = useState("default");
+  const doorRigdRef = useRef();
 
+  const [doorPosition, setDoorPosition] = useState({
+    rotation: [0, 0, 0],
+    position: [0, 0, 0],
+  });
   useEffect(() => {
     if (actions.Open_door && actions.Close_door) {
       switch (DoorState) {
@@ -25,6 +30,12 @@ function Door({
           actions.Open_door.reset().setLoop(THREE.LoopOnce);
           actions.Open_door.clampWhenFinished = true;
           actions.Open_door.play();
+          if (doorRigdRef.current) {
+            setDoorPosition({
+              rotation: [0.04, 0, -1.75],
+              position: [-1.3, -1.2, 0],
+            });
+          }
           break;
 
         case "CLOSE":
@@ -32,6 +43,7 @@ function Door({
           actions.Close_door.reset().setLoop(THREE.LoopOnce);
           actions.Close_door.clampWhenFinished = true;
           actions.Close_door.play();
+          setDoorPosition({ rotation: [0, 0, 0], position: [0, 0, 0] });
           break;
       }
     }
@@ -81,16 +93,29 @@ function Door({
           material={materials.lambert1}
         />
       </RigidBody>
-      <RigidBody type="fixed">
+      <RigidBody
+        type="fixed"
+        // ccd={true}
+        // canSleep={false}
+        ref={doorRigdRef}
+        position={doorPosition.position}
+        rotation={doorPosition.rotation}
+      >
         <mesh
-          name="Metal_low"
-          castShadow
-          receiveShadow
           geometry={nodes.Metal_low.geometry}
-          material={materials.lambert1}
           position={[-1.107, -0.065, -2.332]}
-        />
+        >
+          <meshBasicMaterial visible={false} />
+        </mesh>
       </RigidBody>
+      <mesh
+        name="Metal_low"
+        castShadow
+        receiveShadow
+        geometry={nodes.Metal_low.geometry}
+        material={materials.lambert1}
+        position={[-1.107, -0.065, -2.332]}
+      />
     </group>
   );
 }
