@@ -1,9 +1,9 @@
 import { useSpring, animated } from "@react-spring/three";
 import { RigidBody } from "@react-three/rapier";
-import { object } from "prop-types";
+import { object, string } from "prop-types";
 import { useEffect, useRef, useState } from "react";
 
-function Door({ nodes, materials }) {
+function Door({ nodes, materials, materialId }) {
   const [DoorState, SetDoorState] = useState("DEFAULT");
   const doorRigdRef = useRef();
 
@@ -64,23 +64,33 @@ function Door({ nodes, materials }) {
         type="fixed"
         mass={5}
       >
-        <mesh
-          geometry={nodes.Door.geometry}
-          position={[-1.107, -0.065, -2.332]}
-        >
-          <meshBasicMaterial visible={false} />
-        </mesh>
+        <group position={[-1.107, -0.065, -2.332]}>
+          <mesh geometry={nodes.Door_1.geometry}>
+            <meshBasicMaterial visible={false} />
+          </mesh>
+          <mesh geometry={nodes.Door_2.geometry}>
+            <meshBasicMaterial visible={false} />
+          </mesh>
+        </group>
       </RigidBody>
 
-      <animated.mesh
-        castShadow
-        receiveShadow
-        name="Door"
-        rotation={springs.rotation}
-        material={materials.Door_way}
-        geometry={nodes.Door.geometry}
+      <animated.group
         position={[-1.107, -0.065, -2.332]}
-      />
+        rotation={springs.rotation}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Door_1.geometry}
+          material={materials[materialId.A]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Door_2.geometry}
+          material={materials[materialId.B]}
+        />
+      </animated.group>
     </group>
   );
 }
@@ -88,6 +98,7 @@ function Door({ nodes, materials }) {
 Door.propTypes = {
   nodes: object,
   materials: object,
+  materialId: object,
 };
 
 export default Door;

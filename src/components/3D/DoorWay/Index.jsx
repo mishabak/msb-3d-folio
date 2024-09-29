@@ -7,8 +7,9 @@ import Door from "./Door";
 function Index({ nodes, materials }) {
   const props = { nodes, materials };
   const doorProperty = useSelector(selector_rooms.doorProperty);
+console.log(props,"props");
 
-  return doorProperty.map(({ name, position, rotation }) => (
+  return doorProperty.map(({ name, position, rotation, materialId }) => (
     <group
       key={name}
       name={name}
@@ -16,9 +17,9 @@ function Index({ nodes, materials }) {
       rotation={rotation}
       scale={[0.507, 0.59, 0.507]}
     >
-      <ParentFrame {...props} />
-      <ChildFrame {...props} />
-      <Door {...props} />
+      <ParentFrame materialId={materialId} {...props} />
+      <ChildFrame materialId={materialId} {...props} />
+      <Door materialId={materialId} {...props} />
     </group>
   ));
 }
