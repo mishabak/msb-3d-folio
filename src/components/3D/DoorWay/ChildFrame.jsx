@@ -5,11 +5,11 @@ function ChildFrame({ nodes, materials }) {
   return (
     <RigidBody type="fixed" colliders="cuboid" mass={5}>
       <mesh
-        name="Back_low"
+        name="Child_frame"
         castShadow
         receiveShadow
-        geometry={nodes?.Back_low?.geometry}
-        material={materials?.lambert1}
+        geometry={nodes?.Child_frame?.geometry}
+        material={materials?.Door_way}
       />
     </RigidBody>
   );

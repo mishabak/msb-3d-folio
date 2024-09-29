@@ -65,7 +65,7 @@ function Door({ nodes, materials }) {
         mass={5}
       >
         <mesh
-          geometry={nodes.Metal_low.geometry}
+          geometry={nodes.Door.geometry}
           position={[-1.107, -0.065, -2.332]}
         >
           <meshBasicMaterial visible={false} />
@@ -75,10 +75,10 @@ function Door({ nodes, materials }) {
       <animated.mesh
         castShadow
         receiveShadow
-        name="Metal_low"
+        name="Door"
         rotation={springs.rotation}
-        material={materials.lambert1}
-        geometry={nodes.Metal_low.geometry}
+        material={materials.Door_way}
+        geometry={nodes.Door.geometry}
         position={[-1.107, -0.065, -2.332]}
       />
     </group>

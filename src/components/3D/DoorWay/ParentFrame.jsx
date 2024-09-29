@@ -5,11 +5,11 @@ function ParentFrame({ nodes, materials }) {
   return (
     <RigidBody type="fixed" colliders="cuboid" mass={5}>
       <mesh
-        name="Bricks_low"
+        name="Parent_frame"
         castShadow
         receiveShadow
-        geometry={nodes?.Bricks_low?.geometry}
-        material={materials?.lambert1}
+        geometry={nodes?.Parent_frame?.geometry}
+        material={materials?.Door_way}
       />
     </RigidBody>
   );
