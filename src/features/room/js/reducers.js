@@ -1,6 +1,1 @@
-export default {
-    selectTheme: () => {
-        console.log("temp method");
-        
-    }
-};
+export default {};

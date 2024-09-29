@@ -9,8 +9,12 @@ function App() {
   return (
     <Provider store={store}>
       <Layout>
-        <Physics>
-          <Character/>
+        <Physics
+          debug={
+            import.meta.env.VITE_APP_PHYSICS_DEBUG == "true" ? true : false
+          }
+        >
+          <Character />
           <Room />
         </Physics>
       </Layout>
