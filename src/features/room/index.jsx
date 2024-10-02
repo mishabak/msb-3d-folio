@@ -1,25 +1,16 @@
 import { RigidBody } from "@react-three/rapier";
-import { DoorWay } from "../../components/3D";
+import { Building, DoorWay } from "../../components/3D";
 import { useGLTF } from "@react-three/drei";
 function Room() {
   const { nodes, materials } = useGLTF("./models/3d-room-test.glb");
-  console.log(nodes,materials,"nodes");
-  
+  const props = { nodes, materials };
   return (
-      <group onClick={(e) => e.stopPropagation()} dispose={null}>
-        <RigidBody type="fixed" colliders="trimesh">
-          <mesh
-            name="Rooms"
-            castShadow
-            receiveShadow
-            geometry={nodes?.Building?.geometry}
-            material={materials?.Building}
-            position={[0, 0.2, 0]}
-            scale={[2.103, 0.108, 1.618]}
-          />
-        </RigidBody>
-        <DoorWay nodes={nodes} materials={materials} />
-      </group>
+    <group onClick={(e) => e.stopPropagation()} dispose={null}>
+      <RigidBody type="fixed" colliders="trimesh">
+        <Building {...props} />
+      </RigidBody>
+      <DoorWay {...props} />
+    </group>
   );
 }
 useGLTF.preload("/3d-room.glb");
