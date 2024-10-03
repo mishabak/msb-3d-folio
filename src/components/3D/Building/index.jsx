@@ -1,4 +1,5 @@
 function Index({ nodes, materials }) {
+  
   return (
     <group position={[0, 0.2, 0]} scale={[2.103, 0.108, 1.618]}>
       <mesh

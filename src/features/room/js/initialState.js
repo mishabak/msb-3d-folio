@@ -23,6 +23,40 @@ export default {
       materialId: { A: "Door_way_4", B: "Door_way_5" },
       position: [-8.455, 0.304, -3.373],
       rotation: [Math.PI / 2, 0, 0],
+    },
+  ],
+  puzzleProperty: [
+    {
+      name: "piece_1",
+      position: [0, 0.468, 0],
+    },
+    {
+      name: "piece_2",
+      position: [0.16, 0.468, 0],
+    },
+    {
+      name: "piece_3",
+      position: [0.32, 0.468, 0],
+    },
+    {
+      name: "piece_4",
+      position: [0, 0.308, 0],
+    },
+    {
+      name: "piece_5",
+      position: [0.16, 0.308, 0],
+    },
+    {
+      name: "piece_6",
+      position: [0.32, 0.308, 0],
+    },
+    {
+      name: "piece_7",
+      position: [0, 0.148, 0],
+    },
+    {
+      name: "piece_8",
+      position: [0.16, 0.148, 0],
     }
   ],
 };

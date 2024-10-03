@@ -1,10 +1,12 @@
 import { useSpring, animated } from "@react-spring/three";
-import { RigidBody } from "@react-three/rapier";
-import { object, string } from "prop-types";
 import { useEffect, useRef, useState } from "react";
+import { RigidBody } from "@react-three/rapier";
+import { bool, number, object } from "prop-types";
+import Puzzle from "../Puzzle";
 
-function Door({ nodes, materials, materialId }) {
+function Door({ nodes, materials, materialId, doorNo }) {
   const [DoorState, SetDoorState] = useState("DEFAULT");
+  const [isDoorUnLock, setDoorUnLock] = useState(false);
   const doorRigdRef = useRef();
 
   const [test, setTest] = useState({
@@ -50,12 +52,23 @@ function Door({ nodes, materials, materialId }) {
     }
   }, [DoorState]);
 
+  useEffect(() => {
+    if (isDoorUnLock) {
+      SetDoorState((prev) => (prev == "OPEN" ? "CLOSE" : "OPEN"));
+    }
+  }, [isDoorUnLock]);
+
   const handleClick = () => {
-    SetDoorState((prev) => (prev == "OPEN" ? "CLOSE" : "OPEN"));
+    if (isDoorUnLock)
+      SetDoorState((prev) => (prev == "OPEN" ? "CLOSE" : "OPEN"));
   };
 
   return (
     <group onClick={handleClick}>
+      <Puzzle
+        setDoorUnLock={setDoorUnLock}
+        texture={`Puzzle_image_${doorNo + 1}`}
+      />
       <RigidBody
         position={test.position}
         rotation={test.rotation}
@@ -79,14 +92,10 @@ function Door({ nodes, materials, materialId }) {
         rotation={springs.rotation}
       >
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Door_1.geometry}
           material={materials[materialId.A]}
         />
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Door_2.geometry}
           material={materials[materialId.B]}
         />
@@ -99,6 +108,8 @@ Door.propTypes = {
   nodes: object,
   materials: object,
   materialId: object,
+  isDoorUnLock: bool,
+  doorNo: number,
 };
 
 export default Door;

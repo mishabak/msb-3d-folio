@@ -8,5 +8,11 @@ const doorProperty = createSelector(
   ({ doorProperty }) => doorProperty
 );
 
+// puzzle propery rotation and it's name (static data)
+//  property use for unlock the doors by matching puzzle image.
+const puzzleProperty = createSelector(
+  [rooms],
+  ({ puzzleProperty }) => puzzleProperty
+);
 
-export const selector_rooms = { doorProperty };
+export const selector_rooms = { doorProperty, puzzleProperty };
