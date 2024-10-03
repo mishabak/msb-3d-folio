@@ -65,7 +65,7 @@ export default function Puzzle({ texture, setDoorUnLock }) {
   }, [puzzleProperty]);
 
   return (
-    <group position={[-3, 0.3, -3]} rotation={[-Math.PI / 2, 0, 0]}>
+    <group onClick={(e) => e.stopPropagation()} position={[-3, 0.3, -3]} rotation={[-Math.PI / 2, 0, 0]}>
       <PuzzleFrame nodes={nodes} materials={materials} />
       {shuffledPuzzle.length > 0 &&
         shuffledPuzzle.map((data, idx) => (
