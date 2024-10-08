@@ -1,0 +1,139 @@
+[
+  {
+    "version": "1.0",
+    "image": {
+      "name": "/home/videosdownloader/public_html/image/public/uploadt/Roboto-Regular.ttf",
+      "baseName": "Roboto-Regular.ttf",
+      "format": "json",
+      "formatDescription": "json",
+      "mimeType": "application/json",
+      "class": "DirectClass",
+      "geometry": {
+        "width": 800,
+        "height": 480,
+        "x": 0,
+        "y": 0
+      },
+      "units": "Undefined",
+      "type": "GrayscaleAlpha",
+      "baseType": "Undefined",
+      "endianness": "Undefined",
+      "colorspace": "sRGB",
+      "depth": 16,
+      "baseDepth": 16,
+      "channelDepth": {
+        "alpha": 1,
+        "red": 16,
+        "green": 16,
+        "blue": 1
+      },
+      "pixels": 1536000,
+      "imageStatistics": {
+        "Overall": {
+          "min": 0,
+          "max": 65535,
+          "mean": 60254.3,
+          "median": 65535,
+          "standardDeviation": 14349.8,
+          "kurtosis": 7.62669,
+          "skewness": -3.05458,
+          "entropy": 0.119323
+        }
+      },
+      "channelStatistics": {
+        "alpha": {
+          "min": 65535,
+          "max": 65535,
+          "mean": 65535,
+          "median": 65535,
+          "standardDeviation": 0,
+          "kurtosis": 1.6384e52,
+          "skewness": 9.375e35,
+          "entropy": 0
+        },
+        "red": {
+          "min": 0,
+          "max": 65535,
+          "mean": 58494.1,
+          "median": 65535,
+          "standardDeviation": 19133.1,
+          "kurtosis": 4.54193,
+          "skewness": -2.51104,
+          "entropy": 0.159098
+        },
+        "green": {
+          "min": 0,
+          "max": 65535,
+          "mean": 58494.1,
+          "median": 65535,
+          "standardDeviation": 19133.1,
+          "kurtosis": 4.54193,
+          "skewness": -2.51104,
+          "entropy": 0.159098
+        },
+        "blue": {
+          "min": 0,
+          "max": 65535,
+          "mean": 58494.1,
+          "median": 65535,
+          "standardDeviation": 19133.1,
+          "kurtosis": 4.54193,
+          "skewness": -2.51104,
+          "entropy": 0.159098
+        }
+      },
+      "renderingIntent": "Perceptual",
+      "gamma": 0.454545,
+      "chromaticity": {
+        "redPrimary": {
+          "x": 0.64,
+          "y": 0.33
+        },
+        "greenPrimary": {
+          "x": 0.3,
+          "y": 0.6
+        },
+        "bluePrimary": {
+          "x": 0.15,
+          "y": 0.06
+        },
+        "whitePrimary": {
+          "x": 0.3127,
+          "y": 0.329
+        }
+      },
+      "matteColor": "#BDBDBD",
+      "backgroundColor": "#FFFFFF",
+      "borderColor": "#DFDFDF",
+      "transparentColor": "#00000000",
+      "interlace": "None",
+      "intensity": "Undefined",
+      "compose": "Over",
+      "pageGeometry": {
+        "width": 800,
+        "height": 480,
+        "x": 0,
+        "y": 0
+      },
+      "dispose": "Undefined",
+      "iterations": 0,
+      "compression": "Undefined",
+      "orientation": "Undefined",
+      "properties": {
+        "date:create": "2024-10-03T10:07:33+00:00",
+        "date:modify": "2024-10-03T10:07:33+00:00",
+        "signature": "3f34242d3167e0b1ac7225d5f9ae0c7b79a6a86ef6a247f2bd2a6f557098ece8"
+      },
+      "artifacts": {
+        "mvg:vector-graphics": "push graphic-context\n viewbox 0 0 800 480\n font-size 18\n text 10,20 'abcdefghijklmnopqrstuvwxyz\nABCDEFGHIJKLMNOPQRSTUVWXYZ\n0123456789.:,;(*!?}^)#${%^&-+@\n'\n font-size 18\n text 10,144 '12'\n font-size 12\n text 50,144 'That which does not destroy me, only makes me stronger.'\n font-size 18\n text 10,174 '18'\n font-size 18\n text 50,174 'That which does not destroy me, only makes me stronger.'\n font-size 18\n text 10,210 '24'\n font-size 24\n text 50,210 'That which does not destroy me, only makes me stronger.'\n font-size 18\n text 10,258 '36'\n font-size 36\n text 50,258 'That which does not destroy me, only makes me stronger.'\n font-size 18\n text 10,318 '48'\n font-size 48\n text 50,318 'That which does not destroy me, only makes me stronger.'\n font-size 18\n text 10,390 '60'\n font-size 60\n text 50,390 'That which does not destroy me, only makes me stronger.'\n font-size 18\n text 10,474 '72'\n font-size 72\n text 50,474 'That which does not destroy me, only makes me stronger.'\npop graphic-context"
+      },
+      "tainted": false,
+      "filesize": "168260B",
+      "numberPixels": "384000",
+      "pixelsPerSecond": "1.27799MB",
+      "userTime": "0.300u",
+      "elapsedTime": "0:01.300",
+      "version": "ImageMagick 7.0.10-58 Q16 x86_64 2021-01-14 https://imagemagick.org"
+    }
+  }
+]

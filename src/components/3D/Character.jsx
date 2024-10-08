@@ -61,8 +61,15 @@ function Character() {
   }, []);
 
   return (
-    <RigidBody ref={characterRef} type="dynamic" colliders={'cuboid'} ccd={true} mass={1}  canSleep={false}>
-      <Box args={[0.7, 0.7, 0.7]} position={[-2.5, 1, 6]}>
+    <RigidBody
+      ref={characterRef}
+      type="dynamic"
+      colliders={"cuboid"}
+      ccd={true}
+      mass={1}
+      canSleep={false}
+    >
+      <Box args={[0.7, 0.7, 0.7]} position={[-6.5, 1, 6]}>
         <meshBasicMaterial color={"red"} />
       </Box>
     </RigidBody>

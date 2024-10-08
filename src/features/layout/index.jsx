@@ -6,7 +6,7 @@ function Layout({ children }) {
     <main className="h-screen w-screen">
       <Canvas>
         <PerspectiveCamera makeDefault position={[-40, 5, 10]} fov={50} />
-        <ambientLight intensity={1.5 * Math.PI} />
+        <ambientLight intensity={0.7} />
         <Sky />
         <OrbitControls />
         {children}

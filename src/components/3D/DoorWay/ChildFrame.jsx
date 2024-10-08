@@ -1,23 +1,27 @@
 import { RigidBody } from "@react-three/rapier";
-import { object, string } from "prop-types";
+import { object } from "prop-types";
 
-function ChildFrame({ nodes, materials, materialId }) {
+function ChildFrame({ nodes, materials }) {
   return (
     <RigidBody type="fixed" colliders="cuboid" mass={5}>
-        <mesh
-          name="Child_frame"
-          castShadow
-          receiveShadow
-          geometry={nodes?.Child_frame_1?.geometry}
-          material={materials[materialId.A]}
-        />
-        <mesh
-          name="Child_frame"
-          castShadow
-          receiveShadow
-          geometry={nodes?.Child_frame_2?.geometry}
-          material={materials[materialId.B]}
-        />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Child_frame_1.geometry}
+        material={materials["Material.001"]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Child_frame_2.geometry}
+        material={materials["Material.004"]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Child_frame_3.geometry}
+        material={materials["Material.006"]}
+      />
     </RigidBody>
   );
 }
@@ -25,7 +29,6 @@ function ChildFrame({ nodes, materials, materialId }) {
 ChildFrame.propTypes = {
   nodes: object,
   materials: object,
-  materialId: object,
 };
 
 export default ChildFrame;

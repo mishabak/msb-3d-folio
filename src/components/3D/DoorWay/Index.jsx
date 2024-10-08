@@ -17,7 +17,7 @@ function Index({ nodes, materials }) {
     >
       <ParentFrame materialId={materialId} {...props} />
       <ChildFrame materialId={materialId} {...props} />
-      <Door doorNo={idx} materialId={materialId} {...props} />
+      <Door doorNo={idx+1} materialId={materialId} {...props} />
     </group>
   ));
 }
