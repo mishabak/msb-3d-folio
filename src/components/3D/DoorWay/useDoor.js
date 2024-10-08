@@ -1,11 +1,14 @@
 import { useSpring } from "@react-spring/three";
 import { useEffect, useRef, useState } from "react";
+import useAudio from "../../../hooks/useAudio";
 
 function useDoor() {
   const [DoorState, SetDoorState] = useState("DEFAULT");
-  const [isDoorUnLock, setDoorUnLock] = useState(false);
+  const [isDoorUnLock, setDoorUnLock] = useState(true);
+  const [preventClick, setPreventClick] = useState(false);
+  const openDoor = useAudio({ url: "/audio/open-door.wav" });
+  const closeDoor = useAudio({ url: "/audio/close-door.wav" });
   const doorRigdRef = useRef();
-
   const [test, setTest] = useState({
     rotation: [0, 0, 0],
     position: [0, 0, 0],
@@ -13,9 +16,10 @@ function useDoor() {
 
   const [springs, api] = useSpring(() => ({
     rotation: [0, 0, 0],
-      config: { mass: 4, tension: 150, friction: 100 },
-    
+    config: { mass: 4, tension: 150, friction: 100 },
+
     onChange: ({ value }) => {
+      setPreventClick(true);
       let zTransition = value?.rotation[2];
       function calculateB(Match) {
         const zIndexMax = -1.9;
@@ -32,6 +36,9 @@ function useDoor() {
         rotation: [calculateB(0.04), 0, calculateB(-1.86)],
         position: [calculateB(-1.4), calculateB(-1.2), 0],
       });
+    },
+    onRest: () => {
+      setPreventClick(false);
     },
   }));
 
@@ -59,8 +66,16 @@ function useDoor() {
   }, [isDoorUnLock]);
 
   const handleClick = () => {
-    if (isDoorUnLock)
-      SetDoorState((prev) => (prev == "OPEN" ? "CLOSE" : "OPEN"));
+    if (isDoorUnLock && preventClick)
+      SetDoorState((prev) => {
+        if (prev == "OPEN") {
+          closeDoor.audio.play();
+          return "CLOSE";
+        } else {
+          openDoor.audio.play();
+          return "OPEN";
+        }
+      });
   };
 
   return {

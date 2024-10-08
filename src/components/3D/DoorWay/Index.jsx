@@ -6,7 +6,7 @@ import Door from "./Door";
 
 function Index({ nodes, materials }) {
   const props = { nodes, materials };
-  const doorProperty = useSelector(selector_rooms.doorProperty);
+  const doorProperty = useSelector(selector_rooms.doorProperty);  
   return doorProperty.map(({ name, position, rotation, materialId }, idx) => (
     <group
       key={name}
