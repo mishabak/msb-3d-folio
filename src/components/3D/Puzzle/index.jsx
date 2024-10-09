@@ -1,9 +1,8 @@
 import PuzzlePiece from "./PuzzlePiece";
 import PuzzleFrame from "./PuzzleFrame";
 import usePuzzle from "./usePuzzle";
-import { Html, Text, } from "@react-three/drei";
 
-export default function Puzzle({ texture, setDoorUnLock }) {
+export default function Puzzle({ texture, setDoorUnLock, cback1 }) {
   const {
     EmptyPiece,
     EmptyRef,
@@ -12,10 +11,10 @@ export default function Puzzle({ texture, setDoorUnLock }) {
     materials,
     nodes,
     shuffledPuzzle,
-    progress
-  } = usePuzzle({ setDoorUnLock });
+    progress,
+  } = usePuzzle({ setDoorUnLock, cback1 });
   const chldProps = { texture, materials, nodes };
-  
+
   return (
     <group
       scale={1.5}

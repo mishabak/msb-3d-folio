@@ -4,7 +4,7 @@ import useAudio from "../../../hooks/useAudio";
 
 function useDoor() {
   const [DoorState, SetDoorState] = useState("DEFAULT");
-  const [isDoorUnLock, setDoorUnLock] = useState(true);
+  const [isDoorUnLock, setDoorUnLock] = useState(false);
   const [preventClick, setPreventClick] = useState(false);
   const openDoor = useAudio({ url: "/audio/open-door.wav" });
   const closeDoor = useAudio({ url: "/audio/close-door.wav" });
@@ -60,30 +60,49 @@ function useDoor() {
   useEffect(() => {
     if (isDoorUnLock) {
       SetDoorState("OPEN");
+      closeDoor.audio.play();
     } else {
       SetDoorState("CLOSE");
     }
   }, [isDoorUnLock]);
 
   const handleClick = () => {
-    if (isDoorUnLock && preventClick)
+    if (isDoorUnLock && !preventClick)
       SetDoorState((prev) => {
         if (prev == "OPEN") {
           closeDoor.audio.play();
+          openDoor.audio.stop();
           return "CLOSE";
         } else {
           openDoor.audio.play();
+          closeDoor.audio.stop();
           return "OPEN";
         }
       });
   };
 
+  // callback for trigger door audio if pizzle solve
+  const cback1 = (flag) => {
+    if (flag) {
+      if (DoorState == "OPEN") return;
+      openDoor.audio.play();
+      closeDoor.audio.stop();
+    } else {
+      if (DoorState == "CLOSE") return;
+      openDoor.audio.stop();
+      closeDoor.audio.play();
+    }
+  };
+
   return {
     handleClick,
     setDoorUnLock,
+    cback1,
     isDoorUnLock,
     doorRigdRef,
     springs,
+    openDoor,
+    closeDoor,
     test,
   };
 }

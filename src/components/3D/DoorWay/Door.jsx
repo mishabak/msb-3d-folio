@@ -13,10 +13,14 @@ function Door({ nodes, materials, materialId, doorNo }) {
     isDoorUnLock,
     springs,
     test,
+    closeDoor,
+    openDoor,
+    cback1,
   } = useDoor();
   return (
     <group onClick={handleClick}>
       <Puzzle
+        cback1={cback1}
         setDoorUnLock={setDoorUnLock}
         texture={`Puzzle_image_${doorNo}`}
       />

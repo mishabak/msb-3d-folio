@@ -5,11 +5,11 @@ import { selector_rooms } from "../../../features/room/js/selector";
 import { selectRandomConfiguration } from "../../../util/selectRandomConfiguration";
 import useAudio from "../../../hooks/useAudio";
 
-function usePuzzle({ setDoorUnLock }) {
+function usePuzzle({ setDoorUnLock, cback1 }) {
   const puzzleProperty = useSelector(selector_rooms.puzzleProperty);
   const { nodes, materials } = useGLTF("./models/puzzle.glb");
   const [shuffledPuzzle, setShuffledPuzzle] = useState([]);
-  const {audio} = useAudio({ url: "/audio/game.wav" });
+  const { audio } = useAudio({ url: "/audio/game.wav" });
   const EmptyPiece = [0.32, 0.148, 0];
   const EmptyRef = useRef();
   const groupRef = useRef();
@@ -42,11 +42,18 @@ function usePuzzle({ setDoorUnLock }) {
             flag++;
           }
         });
+          
         setProgress(flag);
         if (flag == 0) {
           setDoorUnLock(true);
+          cback1(true);
         } else {
-          setDoorUnLock(false);
+          setDoorUnLock((prev) => {
+            if (prev) {
+              cback1(false);
+            }
+            return false;
+          });
         }
       });
     }
