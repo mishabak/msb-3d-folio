@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import useAudio from "../../../hooks/useAudio";
 
 function useDoor() {
+  const closeDoor = useAudio({ url: "/audio/close-door.wav" });
+  const openDoor = useAudio({ url: "/audio/open-door.wav" });
   const [DoorState, SetDoorState] = useState("DEFAULT");
   const [isDoorUnLock, setDoorUnLock] = useState(false);
-  const [preventClick, setPreventClick] = useState(false);
-  const openDoor = useAudio({ url: "/audio/open-door.wav" });
-  const closeDoor = useAudio({ url: "/audio/close-door.wav" });
+  const PREVENT_CLICK = useRef(false);
   const doorRigdRef = useRef();
   const [test, setTest] = useState({
     rotation: [0, 0, 0],
@@ -19,7 +19,7 @@ function useDoor() {
     config: { mass: 4, tension: 150, friction: 100 },
 
     onChange: ({ value }) => {
-      setPreventClick(true);
+      PREVENT_CLICK.current = true;
       let zTransition = value?.rotation[2];
       function calculateB(Match) {
         const zIndexMax = -1.9;
@@ -38,7 +38,7 @@ function useDoor() {
       });
     },
     onRest: () => {
-      setPreventClick(false);
+      PREVENT_CLICK.current = false;
     },
   }));
 
@@ -67,7 +67,7 @@ function useDoor() {
   }, [isDoorUnLock]);
 
   const handleClick = () => {
-    if (isDoorUnLock && !preventClick)
+    if (isDoorUnLock && !PREVENT_CLICK.current)
       SetDoorState((prev) => {
         if (prev == "OPEN") {
           closeDoor.audio.play();
