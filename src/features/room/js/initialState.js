@@ -2,25 +2,45 @@ export default {
   doorProperty: [
     {
       name: "DoorWay_1",
-      materialId: { A: "Door_way_1", B: "Door_way_2" },
+      materialId: {
+        a: "Door1_A",
+        b: "Door2_A",
+        c: "Door1_B",
+        d: "Door2_B",
+      },
       position: [-3.413, 0.301, 6.536],
       rotation: [Math.PI / 2, 0, Math.PI / 2],
     },
     {
       name: "DoorWay_2",
-      materialId: { A: "Door_way_2", B: "Door_way_3" },
+      materialId: {
+        a: "Door2_A",
+        b: "Door3_A",
+        c: "Door2_B",
+        d: "Door3_B",
+      },
       position: [1.861, 0.304, 3.212],
       rotation: [Math.PI / 2, 0, 0],
     },
     {
       name: "DoorWay_3",
-      materialId: { A: "Door_way_3", B: "Door_way_4" },
+      materialId: {
+        a: "Door3_A",
+        b: "Door4_A",
+        c: "Door3_B",
+        d: "Door4_B",
+      },
       position: [-3.411, 0.304, -0.084],
       rotation: [Math.PI / 2, 0, -Math.PI / 2],
     },
     {
       name: "DoorWay_4",
-      materialId: { A: "Door_way_4", B: "Door_way_5" },
+      materialId: {
+        a: "Door4_A",
+        b: "Door5_A",
+        c: "Door4_B",
+        d: "Door5_B",
+      },
       position: [-8.455, 0.304, -3.373],
       rotation: [Math.PI / 2, 0, 0],
     },

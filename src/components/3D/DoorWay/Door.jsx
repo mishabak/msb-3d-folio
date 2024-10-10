@@ -34,16 +34,13 @@ function Door({ nodes, materials, materialId, doorNo }) {
         mass={5}
       >
         <group position={[-1.107, -0.065, -2.332]}>
-          <mesh geometry={nodes.Door_1.geometry} material={materials.Material}>
+          <mesh geometry={nodes.Door_1.geometry}>
             <meshBasicMaterial visible={false} />
           </mesh>
           <mesh geometry={nodes.Door_2.geometry}>
             <meshBasicMaterial visible={false} />
           </mesh>
           <mesh geometry={nodes.Door_3.geometry}>
-            <meshBasicMaterial visible={false} />
-          </mesh>
-          <mesh geometry={nodes.Door_4.geometry}>
             <meshBasicMaterial visible={false} />
           </mesh>
         </group>
@@ -53,19 +50,9 @@ function Door({ nodes, materials, materialId, doorNo }) {
         position={[-1.107, -0.065, -2.332]}
         rotation={springs.rotation}
       >
-        <mesh geometry={nodes.Door_1.geometry} material={materials.Material} />
-        <mesh
-          geometry={nodes.Door_2.geometry}
-          material={materials["Material.004"]}
-        />
-        <mesh
-          geometry={nodes.Door_3.geometry}
-          material={materials["Material.005"]}
-        />
-        <mesh
-          geometry={nodes.Door_4.geometry}
-          material={materials["Material.006"]}
-        />
+        <mesh geometry={nodes.Door_1.geometry} material={materials[materialId.a]} />
+        <mesh geometry={nodes.Door_2.geometry} material={materials[materialId.b]} />
+        <mesh geometry={nodes.Door_3.geometry} material={materials[materialId.d]} />
       </animated.group>
     </group>
   );

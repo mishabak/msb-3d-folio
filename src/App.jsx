@@ -4,8 +4,10 @@ import { Layout, Room } from "./features";
 import "./App.css";
 import { Physics } from "@react-three/rapier";
 import { Character } from "./components/3D";
+import useAudio from "./hooks/useAudio";
 
 function App() {
+  const { audio } = useAudio({ url: "/audio/footStep.mp3" });
   return (
     <Provider store={store}>
       <Layout>
@@ -14,7 +16,7 @@ function App() {
             import.meta.env.VITE_APP_PHYSICS_DEBUG == "true" ? true : false
           }
         >
-          <Character />
+          <Character audio={audio} />
           <Room />
         </Physics>
       </Layout>
