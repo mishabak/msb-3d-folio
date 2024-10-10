@@ -9,7 +9,7 @@ function usePuzzle({ setDoorUnLock, cback1 }) {
   const puzzleProperty = useSelector(selector_rooms.puzzleProperty);
   const { nodes, materials } = useGLTF("./models/puzzle.glb");
   const [shuffledPuzzle, setShuffledPuzzle] = useState([]);
-  const { audio } = useAudio({ url: "/audio/game.wav" });
+  const { audio } = useAudio({ url: "/audio/puzzle.mp3" });
   const EmptyPiece = [0.32, 0.148, 0];
   const EmptyRef = useRef();
   const groupRef = useRef();
@@ -42,7 +42,7 @@ function usePuzzle({ setDoorUnLock, cback1 }) {
             flag++;
           }
         });
-          
+
         setProgress(flag);
         if (flag == 0) {
           setDoorUnLock(true);
