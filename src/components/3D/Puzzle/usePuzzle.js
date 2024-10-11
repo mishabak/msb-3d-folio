@@ -1,12 +1,10 @@
-import { useSelector } from "react-redux";
+import { selectRandomConfiguration } from "../../../util/selectRandomConfiguration";
 import { useGLTF } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
-import { selector_rooms } from "../../../features/room/js/selector";
-import { selectRandomConfiguration } from "../../../util/selectRandomConfiguration";
 import useAudio from "../../../hooks/useAudio";
+import { PUZZLE_PROPERTY } from "../../../util/constants";
 
 function usePuzzle({ setDoorUnLock, cback1 }) {
-  const puzzleProperty = useSelector(selector_rooms.puzzleProperty);
   const { nodes, materials } = useGLTF("./models/puzzle.glb");
   const [shuffledPuzzle, setShuffledPuzzle] = useState([]);
   const { audio } = useAudio({ url: "/audio/puzzle.mp3" });
@@ -32,7 +30,7 @@ function usePuzzle({ setDoorUnLock, cback1 }) {
         let flag = 0;
         audio.play();
         groupRef.current.children.forEach((data, idx) => {
-          let actualPosition = puzzleProperty[idx].position;
+          let actualPosition = PUZZLE_PROPERTY[idx].position;
           let newPosition = data.position;
 
           if (

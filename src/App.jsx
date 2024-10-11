@@ -1,26 +1,36 @@
-import { Provider } from "react-redux";
-import { store } from "./store/redux";
-import { Layout, Room } from "./features";
-import "./App.css";
+import {
+  Sky,
+  OrbitControls,
+  KeyboardControls,
+  PerspectiveCamera,
+} from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
+import usePhysicDebug from "./hooks/usePhysicDebug";
+import { KEYBOARD_MAP } from "./util/constants";
 import { Character } from "./components/3D";
+import { Room } from "./features";
+import "./App.css";
 import useAudio from "./hooks/useAudio";
 
 function App() {
+  const { debugMode } = usePhysicDebug();
   const { audio } = useAudio({ url: "/audio/footStep.mp3" });
   return (
-    <Provider store={store}>
-      <Layout>
-        <Physics
-          debug={
-            import.meta.env.VITE_APP_PHYSICS_DEBUG == "true" ? true : false
-          }
-        >
-          <Character audio={audio} />
-          <Room />
-        </Physics>
-      </Layout>
-    </Provider>
+    <main className="h-screen w-screen">
+      <KeyboardControls map={KEYBOARD_MAP}>
+        <Canvas>
+          <ambientLight intensity={0.7} />
+          <OrbitControls />
+          <Sky />
+          <PerspectiveCamera makeDefault position={[-40, 5, 10]} fov={70} />
+          <Physics debug={debugMode}>
+            <Character audio={audio} />
+            <Room />
+          </Physics>
+        </Canvas>
+      </KeyboardControls>
+    </main>
   );
 }
 

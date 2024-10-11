@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Wall_1",
+    "geometry": "Building_5",
+    "material": "Room1_wall"
+  },
+  {
+    "name": "Wall_2",
+    "geometry": "Building_2",
+    "material": "Room2_wall"
+  },
+  {
+    "name": "Wall_3",
+    "geometry": "Building_3",
+    "material": "Room3_wall"
+  },
+  {
+    "name": "Wall_4",
+    "geometry": "Building_4",
+    "material": "Room4_wall"
+  },
+  {
+    "name": "floor_1",
+    "geometry": "Building_6",
+    "material": "Room1_floor"
+  },
+  {
+    "name": "floor_2",
+    "geometry": "Building_7",
+    "material": "Room2_floor"
+  },
+  {
+    "name": "floor_3",
+    "geometry": "Building_8",
+    "material": "Room3_floor"
+  },
+  {
+    "name": "floor_4",
+    "geometry": "Building_9",
+    "material": "Room4_floor"
+  },
+  {
+    "name": "floor_5",
+    "geometry": "Building_10",
+    "material": "Room5_floor"
+  }
+]

@@ -1,4 +1,3 @@
-import { RigidBody } from "@react-three/rapier";
 import { Building, DoorWay } from "../../components/3D";
 import { useGLTF } from "@react-three/drei";
 function Room() {
@@ -6,9 +5,7 @@ function Room() {
   const props = { nodes, materials };
   return (
     <group onClick={(e) => e.stopPropagation()}>
-      <RigidBody type="fixed" colliders="trimesh">
-        <Building {...props} />
-      </RigidBody>
+      <Building {...props} />
       <DoorWay {...props} />
     </group>
   );

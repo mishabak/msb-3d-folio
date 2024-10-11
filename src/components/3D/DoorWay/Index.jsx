@@ -1,13 +1,11 @@
-import { selector_rooms } from "../../../features/room/js/selector";
-import { useSelector } from "react-redux";
+import { DOOR_PROPERTY } from "../../../util/constants";
 import ParentFrame from "./ParentFrame";
 import ChildFrame from "./ChildFrame";
 import Door from "./Door";
 
 function Index({ nodes, materials }) {
   const props = { nodes, materials };
-  const doorProperty = useSelector(selector_rooms.doorProperty);  
-  return doorProperty.map(({ name, position, rotation, materialId }, idx) => (
+  return DOOR_PROPERTY.map(({ name, position, rotation, materialId }, idx) => (
     <group
       key={name}
       name={name}
@@ -17,7 +15,7 @@ function Index({ nodes, materials }) {
     >
       <ParentFrame materialId={materialId} {...props} />
       <ChildFrame materialId={materialId} {...props} />
-      <Door doorNo={idx+1} materialId={materialId} {...props} />
+      <Door doorNo={idx + 1} materialId={materialId} {...props} />
     </group>
   ));
 }

@@ -2,17 +2,9 @@ import { createSelector } from "@reduxjs/toolkit";
 
 const rooms = (state) => state.rooms;
 
-// door propery include position rotation and it's name (static data)
-const doorProperty = createSelector(
-  [rooms],
-  ({ doorProperty }) => doorProperty
-);
+// state for check character on which floor eg: room1_floor,room2_floor etc.
+const bgMusicFor = createSelector([rooms], ({ bgMusicFor }) => bgMusicFor);
 
-// puzzle propery rotation and it's name (static data)
-//  property use for unlock the doors by matching puzzle image.
-const puzzleProperty = createSelector(
-  [rooms],
-  ({ puzzleProperty }) => puzzleProperty
-);
-
-export const selector_rooms = { doorProperty, puzzleProperty };
+export const selector_rooms = {
+  bgMusicFor,
+};
