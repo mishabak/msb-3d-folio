@@ -1,8 +1,8 @@
 [
   {
     "name": "Wall_1",
-    "geometry": "Building_5",
-    "material": "Room1_wall"
+    "geometry": "Building_1",
+    "material": "Material"
   },
   {
     "name": "Wall_2",
@@ -18,6 +18,11 @@
     "name": "Wall_4",
     "geometry": "Building_4",
     "material": "Room4_wall"
+  },
+  {
+    "name": "Wall_5",
+    "geometry": "Building_5",
+    "material": "Room1_wall"
   },
   {
     "name": "floor_1",

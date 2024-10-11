@@ -1,6 +1,6 @@
 import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { RigidBody } from "@react-three/rapier";
+import { CapsuleCollider, RigidBody } from "@react-three/rapier";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { Avatar } from "./Avatar";
@@ -83,8 +83,7 @@ function Index({ audio }) {
     <RigidBody
       lockRotations
       ref={rb}
-      type="dynamic"
-      colliders={"ball"}
+      colliders={false}
       scale={0.35}
       position={[-13, 0.1, 10]}
     >
@@ -95,6 +94,7 @@ function Index({ audio }) {
       >
         <Avatar isMove={isMove} />
       </group>
+      <CapsuleCollider position={[0,2,0]} args={[0.4, 0.8]}/>
     </RigidBody>
   );
 }
