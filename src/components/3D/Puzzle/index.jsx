@@ -2,7 +2,7 @@ import PuzzlePiece from "./PuzzlePiece";
 import PuzzleFrame from "./PuzzleFrame";
 import usePuzzle from "./usePuzzle";
 
-export default function Puzzle({ texture, setDoorUnLock, cback1 }) {
+export default function Puzzle({ texture, setDoorUnLock, callbackPuzzleSloved }) {
   const {
     EmptyPiece,
     EmptyRef,
@@ -12,7 +12,7 @@ export default function Puzzle({ texture, setDoorUnLock, cback1 }) {
     nodes,
     shuffledPuzzle,
     progress,
-  } = usePuzzle({ setDoorUnLock, cback1 });
+  } = usePuzzle({ setDoorUnLock, callbackPuzzleSloved });
   const chldProps = { texture, materials, nodes };
 
   return (

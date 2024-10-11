@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import useAudio from "../../../hooks/useAudio";
 import { PUZZLE_PROPERTY } from "../../../util/constants";
 
-function usePuzzle({ setDoorUnLock, cback1 }) {
+function usePuzzle({ setDoorUnLock, callbackPuzzleSloved }) {
   const { nodes, materials } = useGLTF("./models/puzzle.glb");
   const [shuffledPuzzle, setShuffledPuzzle] = useState([]);
   const { audio } = useAudio({ url: "/audio/puzzle.mp3" });
@@ -44,11 +44,11 @@ function usePuzzle({ setDoorUnLock, cback1 }) {
         setProgress(flag);
         if (flag == 0) {
           setDoorUnLock(true);
-          cback1(true);
+          callbackPuzzleSloved(true);
         } else {
           setDoorUnLock((prev) => {
             if (prev) {
-              cback1(false);
+              callbackPuzzleSloved(false);
             }
             return false;
           });

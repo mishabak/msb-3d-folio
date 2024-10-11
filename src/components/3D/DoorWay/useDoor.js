@@ -1,19 +1,11 @@
 import { useSpring } from "@react-spring/three";
 import { useEffect, useRef, useState } from "react";
-import useAudio from "../../../hooks/useAudio";
 
-function useDoor() {
-  const closeDoor = useAudio({ url: "/audio/close-door.wav" });
-  const openDoor = useAudio({ url: "/audio/open-door.wav" });
+function useDoor({ closeDoorAudio, openDoorAudio }) {
   const [DoorState, SetDoorState] = useState("DEFAULT");
-  const [isDoorUnLock, setDoorUnLock] = useState(false);
+  const [isDoorUnLock, setDoorUnLock] = useState(true);
   const PREVENT_CLICK = useRef(false);
-  const doorRigdRef = useRef();
-  const [test, setTest] = useState({
-    rotation: [0, 0, 0],
-    position: [0, 0, 0],
-  });
-
+  const DOOR_POSITION = useRef(null);
   const [springs, api] = useSpring(() => ({
     rotation: [0, 0, 0],
     config: { mass: 4, tension: 150, friction: 100 },
@@ -32,12 +24,13 @@ function useDoor() {
           Match;
         return B;
       }
-      setTest({
-        rotation: [calculateB(0.04), 0, calculateB(-1.86)],
+      DOOR_POSITION.current = {
         position: [calculateB(-1.4), calculateB(-1.2), 0],
-      });
+        rotation: [calculateB(0.04), 0, calculateB(-1.86)],
+      };
     },
     onRest: () => {
+      DOOR_POSITION.current = false;
       PREVENT_CLICK.current = false;
     },
   }));
@@ -60,7 +53,7 @@ function useDoor() {
   useEffect(() => {
     if (isDoorUnLock) {
       SetDoorState("OPEN");
-      closeDoor.audio.play();
+      openDoorAudio.audio.play();
     } else {
       SetDoorState("CLOSE");
     }
@@ -70,40 +63,37 @@ function useDoor() {
     if (isDoorUnLock && !PREVENT_CLICK.current)
       SetDoorState((prev) => {
         if (prev == "OPEN") {
-          closeDoor.audio.play();
-          openDoor.audio.stop();
+          closeDoorAudio.audio.play();
+          openDoorAudio.audio.stop();
           return "CLOSE";
         } else {
-          openDoor.audio.play();
-          closeDoor.audio.stop();
+          openDoorAudio.audio.play();
+          closeDoorAudio.audio.stop();
           return "OPEN";
         }
       });
   };
 
-  // callback for trigger door audio if pizzle solve
-  const cback1 = (flag) => {
+  // CALLBACK FOR TRIGGER IF PUZZLE WAS SOLVED
+  const callbackPuzzleSloved = (flag) => {
     if (flag) {
       if (DoorState == "OPEN") return;
-      openDoor.audio.play();
-      closeDoor.audio.stop();
+      openDoorAudio.audio.play();
+      closeDoorAudio.audio.stop();
     } else {
       if (DoorState == "CLOSE") return;
-      openDoor.audio.stop();
-      closeDoor.audio.play();
+      openDoorAudio.audio.stop();
+      closeDoorAudio.audio.play();
     }
   };
 
   return {
+    springs,
     handleClick,
     setDoorUnLock,
-    cback1,
+    DOOR_POSITION,
     isDoorUnLock,
-    doorRigdRef,
-    springs,
-    openDoor,
-    closeDoor,
-    test,
+    callbackPuzzleSloved,
   };
 }
 
