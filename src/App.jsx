@@ -1,5 +1,4 @@
 import {
-  Sky,
   OrbitControls,
   KeyboardControls,
   PerspectiveCamera,
@@ -22,7 +21,6 @@ function App() {
         <Canvas>
           <ambientLight intensity={0.7} />
           <OrbitControls />
-          <Sky />
           <PerspectiveCamera makeDefault position={[-40, 5, 10]} fov={70} />
           <Physics debug={debugMode}>
             <Character audio={audio} />
