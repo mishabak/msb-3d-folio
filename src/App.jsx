@@ -14,7 +14,7 @@ import useAudio from "./hooks/useAudio";
 
 function App() {
   const { debugMode } = usePhysicDebug();
-  const { audio } = useAudio({ url: "/audio/footStep.mp3" });
+  const { audio } = useAudio({ url: "/audio/character/steps.wav" });
   return (
     <main className="h-screen w-screen">
       <KeyboardControls map={KEYBOARD_MAP}>

@@ -2,13 +2,11 @@ import { DOOR_PROPERTY } from "../../../util/constants";
 import ParentFrame from "./ParentFrame";
 import ChildFrame from "./ChildFrame";
 import Door from "./Door";
-import useAudio from "../../../hooks/useAudio";
+import useDoorBase from "./useDoorBase";
 
 function Index({ nodes, materials }) {
   const props = { nodes, materials };
-  const closeDoorAudio = useAudio({ url: "/audio/close-door.wav" });
-  const openDoorAudio = useAudio({ url: "/audio/open-door.wav" });
-
+  const { PuzzleAudio, closeDoorAudio, openDoorAudio } = useDoorBase();
   return DOOR_PROPERTY.map(({ name, position, rotation, materialId }, idx) => (
     <group
       key={name}
@@ -20,6 +18,7 @@ function Index({ nodes, materials }) {
       <ParentFrame materialId={materialId} {...props} />
       <ChildFrame materialId={materialId} {...props} />
       <Door
+        PuzzleAudio={PuzzleAudio}
         closeDoorAudio={closeDoorAudio}
         openDoorAudio={openDoorAudio}
         materialId={materialId}

@@ -70,7 +70,7 @@ function Index({ audio }) {
 
   useEffect(() => {
     if (isMove) {
-      audio.setVolume(0.1);
+      audio.setVolume(0.2);
       audio.play();
       audio.setLoop(true);
     }
@@ -94,7 +94,7 @@ function Index({ audio }) {
       >
         <Avatar isMove={isMove} />
       </group>
-      <CapsuleCollider position={[0,2,0]} args={[0.4, 0.8]}/>
+      <CapsuleCollider position={[0, 2, 0]} args={[0.4, 1]} />
     </RigidBody>
   );
 }

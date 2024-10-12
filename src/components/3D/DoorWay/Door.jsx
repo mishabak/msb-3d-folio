@@ -50,6 +50,7 @@ function Door({
   doorNo,
   closeDoorAudio,
   openDoorAudio,
+  PuzzleAudio,
 }) {
   const {
     handleClick,
@@ -62,6 +63,7 @@ function Door({
   return (
     <group onClick={handleClick}>
       <Puzzle
+        PuzzleAudio={PuzzleAudio}
         callbackPuzzleSloved={callbackPuzzleSloved}
         setDoorUnLock={setDoorUnLock}
         texture={`Puzzle_image_${doorNo}`}

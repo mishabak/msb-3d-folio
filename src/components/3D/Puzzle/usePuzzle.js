@@ -1,13 +1,11 @@
 import { selectRandomConfiguration } from "../../../util/selectRandomConfiguration";
-import { useGLTF } from "@react-three/drei";
-import { useEffect, useRef, useState } from "react";
-import useAudio from "../../../hooks/useAudio";
 import { PUZZLE_PROPERTY } from "../../../util/constants";
+import { useEffect, useRef, useState } from "react";
+import { useGLTF } from "@react-three/drei";
 
-function usePuzzle({ setDoorUnLock, callbackPuzzleSloved }) {
+function usePuzzle({ setDoorUnLock, callbackPuzzleSloved, PuzzleAudio }) {
   const { nodes, materials } = useGLTF("./models/puzzle.glb");
   const [shuffledPuzzle, setShuffledPuzzle] = useState([]);
-  const { audio } = useAudio({ url: "/audio/puzzle.mp3" });
   const EmptyPiece = [0.32, 0.148, 0];
   const EmptyRef = useRef();
   const groupRef = useRef();
@@ -28,7 +26,7 @@ function usePuzzle({ setDoorUnLock, callbackPuzzleSloved }) {
       play(emptyPos, () => {
         [emptyPos.x, emptyPos.y] = [Swap.x, Swap.y];
         let flag = 0;
-        audio.play();
+        PuzzleAudio.audio.play();
         groupRef.current.children.forEach((data, idx) => {
           let actualPosition = PUZZLE_PROPERTY[idx].position;
           let newPosition = data.position;

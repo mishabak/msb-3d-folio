@@ -1,6 +1,5 @@
-import { selector_rooms } from "../../../features/Room/js/selector";
 import { action_rooms } from "../../../features/Room/js/slice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import BackgroundMusic from "./BackgroundMusic";
 import { RigidBody } from "@react-three/rapier";
 import useAudio from "../../../hooks/useAudio";
