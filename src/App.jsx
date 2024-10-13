@@ -11,10 +11,14 @@ import { Character } from "./components/3D";
 import { Room } from "./features";
 import "./App.css";
 import useAudio from "./hooks/useAudio";
+import { useEffect } from "react";
 
 function App() {
   const { debugMode } = usePhysicDebug();
-  const { audio } = useAudio({ url: "/audio/character/steps.wav" });
+  const { audio, initialize } = useAudio({ url: "/audio/character/steps.wav" });
+  useEffect(() => {
+    initialize()
+  },[])
   return (
     <main className="h-screen w-screen">
       <KeyboardControls map={KEYBOARD_MAP}>
