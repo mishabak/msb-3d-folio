@@ -6,13 +6,11 @@ import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLigh
 const AreaLight = ({ w, h, p, r }) => {
   const lightref = useRef();
   useEffect(() => {
-    // Initialize the RectAreaLightUniformsLib
     // RectAreaLightUniformsLib.init();
-    // Optional: Add the RectAreaLightHelper for debugging
     // const helper = new RectAreaLightHelper(lightref.current);
     // lightref.current.add(helper);
   }, []);
-
+  
   return (
     <rectAreaLight
       ref={lightref}
@@ -57,11 +55,28 @@ const Room2 = () => {
   );
 };
 
+const Room5 = () => {
+  return (
+    <group position={[-6,0,-9.9]}>
+      {[
+        { p: [3.8, 1.03, 4.8], r: [1.571, -0.3, 1.57] },
+        { p: [-1.15, 1.03, 4.8], r: [1.571, 0.3, 1.57] },
+        { p: [1.1, 1.03, 2.8], r: [Math.PI / 2 - 0.3, 0, Math.PI],w:10 },
+        { p: [1.1, 1.03, 6.8], r: [Math.PI / 2 + 0.3, 0, Math.PI],w:10 },
+        { p: [1.3, 20, 4.9], r: [Math.PI / 2, Math.PI, 0], w: 4, h: 2 },
+      ].map(({ p, r, h, w }, ix) => (
+        <AreaLight p={p} r={r} h={h} w={w} key={ix} />
+      ))}
+    </group>
+  );
+};
+
 function Lights() {
   return (
     <group>
       <Room1 />
       <Room2 />
+      <Room5/>
     </group>
   );
 }
