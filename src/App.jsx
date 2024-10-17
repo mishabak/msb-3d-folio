@@ -17,13 +17,14 @@ function App() {
   const { debugMode } = usePhysicDebug();
   const { audio, initialize } = useAudio({ url: "/audio/character/steps.wav" });
   useEffect(() => {
-    initialize()
-  },[])
+    // initialize()
+  }, []);
   return (
     <main className="h-screen w-screen">
       <KeyboardControls map={KEYBOARD_MAP}>
         <Canvas>
-          <ambientLight intensity={0.7} />
+          <ambientLight castShadow receiveShadow intensity={0.8} />
+          <directionalLight intensity={0.7} />
           <OrbitControls />
           <PerspectiveCamera makeDefault position={[-40, 5, 10]} fov={70} />
           <Physics debug={debugMode}>

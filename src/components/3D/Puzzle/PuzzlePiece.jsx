@@ -33,14 +33,10 @@ function PuzzlePiece({ position, nodes, materials, texture, handleClick, id }) {
       scale={[0.076, 0.076, 0.008]}
     >
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes[`piece_${id}_1`]?.geometry}
         material={materials.Material}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes[`piece_${id}_2`]?.geometry}
         material={materials[texture]}
       />

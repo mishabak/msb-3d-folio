@@ -48,5 +48,10 @@
     "name": "floor_5",
     "geometry": "Building_10",
     "material": "Room5_floor"
+  },
+  {
+    "name": "wall_5",
+    "geometry": "Building_11",
+    "material": "Room5_wall"
   }
 ]

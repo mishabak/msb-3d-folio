@@ -3,7 +3,7 @@ import { selector_rooms } from "../../../features/Room/js/selector";
 import { useSelector } from "react-redux";
 
 function BackgroundMusic({ name, audio, initialize }) {
-  const sd = useSelector(selector_rooms.bgMusicFor);
+  const sd = useSelector(selector_rooms.currentRoom);
   const afterPlaying = useRef(false);
 
   const triggerBgmusic = async () => {
@@ -30,17 +30,17 @@ function BackgroundMusic({ name, audio, initialize }) {
     }, fadeInterval);
   };
 
-  useEffect(() => {
-    if (sd == name) {
-      triggerBgmusic();
-    }
-    return () => {
-      if (afterPlaying.current) {
-        fadeOutAudio();
-        afterPlaying.current = false;
-      }
-    };
-  }, [sd]);
+  // useEffect(() => {
+  //   if (sd == name) {
+  //     triggerBgmusic();
+  //   }
+  //   return () => {
+  //     if (afterPlaying.current) {
+  //       fadeOutAudio();
+  //       afterPlaying.current = false;
+  //     }
+  //   };
+  // }, [sd]);
 
   return <Fragment />;
 }

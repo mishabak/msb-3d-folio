@@ -23,13 +23,7 @@ const FloorMesh = ({ name, geometry, material }) => {
         onCollisionEnter: () => onCollision(name),
       })}
     >
-      <mesh
-        castShadow
-        receiveShadow
-        name={name}
-        geometry={geometry}
-        material={material}
-      />
+      <mesh name={name} geometry={geometry} material={material} />
       <BackgroundMusic name={name} audio={audio} initialize={initialize} />
     </RigidBody>
   );

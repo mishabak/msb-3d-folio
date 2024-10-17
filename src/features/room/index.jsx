@@ -1,4 +1,4 @@
-import { Building, DoorWay } from "../../components/3D";
+import { Building, ContactRoom, DoorWay } from "../../components/3D";
 import { useGLTF } from "@react-three/drei";
 function Room() {
   const { nodes, materials } = useGLTF("./models/portfolio.glb");
@@ -7,6 +7,7 @@ function Room() {
     <group onClick={(e) => e.stopPropagation()}>
       <Building {...props} />
       <DoorWay {...props} />
+      <ContactRoom />
     </group>
   );
 }

@@ -1,3 +1,3 @@
 export default {
-  bgMusicFor: null,
+  currentRoom: null,
 };
