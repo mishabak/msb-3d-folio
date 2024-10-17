@@ -73,6 +73,7 @@ function Lights() {
           r={[Math.PI / 2, 0, 0]}
           h={8}
           w={11.3}
+          i={0.5}
         />
       );
     default:
