@@ -1,18 +1,13 @@
 import HolographicWrapper from "./HolographicWrapper";
+import TextArea from "./TextArea";
 const Form = () => {
   return (
     <div
-      className="
-text-[45px] drop-shadow-[0px_0px_3px_#86e9c3] font-thin"
-    >
-      <div>Full Name</div>
-      <input
-        className="bg-transparent font-thin outline-none shadow-[0px_0px_3px_1px_#86e9c3]"
-        type="text"
-      />
-
-      <div>center screen</div>
-    </div>
+    className="
+  text-[45px] drop-shadow-[0px_0px_3px_#86e9c3] font-thin flex flex-col items-center justify-center h-full"
+  >
+    <TextArea label={"Message"} />
+  </div>
   );
 };
 function Holo3() {

@@ -1,34 +1,30 @@
 import HolographicWrapper from "./HolographicWrapper";
-
+import Input from "./Input";
 
 const Form = () => {
   return (
     <div
       className="
-text-[45px] drop-shadow-[0px_0px_3px_#86e9c3] font-thin"
+      text-[45px] font-thin flex flex-col items-center"
     >
-      <div>
-      Full Name
-      </div>
-      <input className="bg-transparent font-thin outline-none shadow-[0px_0px_3px_1px_#86e9c3]" type="text" />
-      
-      <div>
-      center screen
-     </div>
+      <h4 className="text-[48px] mb-9 drop-shadow-[0px_0px_3px_#86e9c3]">
+        Contact me
+      </h4>
+      <Input label={"Full Name"} className="mt-9" />
+      <Input label={"Email"} className="mt-9" />
     </div>
   );
 };
-function Holo2() {
 
-  
+function Holo2() {
   return (
     <HolographicWrapper
       height={700}
-      position={[-2.112, 1.403, -0.11]}
-      rotation={[0, 1.1 , 0]}
-      width={800}
+      position={[0, 1.403, -1]}
+      rotation={[0, 0, 0]}
+      width={1326}
     >
-     <Form/>
+      <Form />
     </HolographicWrapper>
   );
 }

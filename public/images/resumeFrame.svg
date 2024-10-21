@@ -1,0 +1,36 @@
+<svg width="179" height="194" viewBox="0 0 179 194" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="140.5" cy="98.5" r="11" stroke="#00ffe691" stroke-opacity="0.34"/>
+<circle cx="140.5" cy="97.5" r="18" stroke="#00ffe691" stroke-opacity="0.34" stroke-width="3"/>
+<path d="M154.741 87.1328C154.741 87.5518 155.176 88.0342 155.298 88.4613C155.419 88.8845 155.727 89.37 155.753 89.8C155.785 90.3424 155.937 90.842 155.937 91.4094C155.937 91.9613 155.937 92.5131 155.937 93.0649C155.937 94.173 155.455 95.2598 154.925 96.1868C154.716 96.5518 154.416 96.9714 154.118 97.27C153.823 97.565 153.145 97.6826 152.994 97.9853" stroke="#00DDDB" stroke-opacity="0.42" stroke-width="3" stroke-linecap="round"/>
+<path d="M126.496 87C126.496 87.419 126.061 87.9013 125.939 88.3285C125.818 88.7517 125.51 89.2372 125.485 89.6671C125.453 90.2095 125.301 90.7091 125.301 91.2766C125.301 91.8285 125.301 92.3803 125.301 92.9321C125.301 94.0402 125.783 95.127 126.312 96.054C126.521 96.419 126.821 96.8386 127.12 97.1372C127.415 97.4322 128.092 97.5498 128.244 97.8525" stroke="#00DDDB" stroke-opacity="0.42" stroke-width="3" stroke-linecap="round"/>
+<path d="M158.322 99.1247C158.053 99.4454 158.075 100.094 157.893 100.5C157.714 100.902 157.637 101.472 157.38 101.817C157.055 102.253 156.85 102.733 156.485 103.167C156.13 103.59 155.774 104.012 155.419 104.434C154.706 105.282 153.638 105.804 152.636 106.173C152.241 106.318 151.741 106.446 151.321 106.482C150.905 106.518 150.311 106.172 150 106.306" stroke="#00DDDB" stroke-opacity="0.42" stroke-width="3" stroke-linecap="round"/>
+<path d="M122.915 98.9919C123.185 99.3126 123.162 99.9616 123.344 100.367C123.524 100.769 123.6 101.339 123.857 101.684C124.182 102.12 124.387 102.6 124.753 103.034C125.108 103.457 125.463 103.879 125.818 104.302C126.531 105.15 127.6 105.671 128.602 106.04C128.996 106.185 129.496 106.313 129.917 106.349C130.332 106.385 130.927 106.039 131.237 106.173" stroke="#00DDDB" stroke-opacity="0.42" stroke-width="3" stroke-linecap="round"/>
+<rect x="15.5" y="14.5" width="114" height="159" stroke="#00ffe691" stroke-opacity="0.38" stroke-width="9"/>
+<path d="M138.5 75V17.5" stroke="#00ffe691" stroke-opacity="0.47" stroke-width="3"/>
+<path d="M138.5 169.5V121" stroke="#00ffe691" stroke-opacity="0.47" stroke-width="3"/>
+<path d="M143 77.5L149.5 71L176 97.5L149.5 124L143 117.5" stroke="#00ffe691" stroke-opacity="0.47" stroke-width="3"/>
+<path d="M162.5 104L168.5 98L162.5 92" stroke="#08D4DA" stroke-opacity="0.53"/>
+<path d="M63 2L55 10" stroke="#00ffe691" stroke-opacity="0.47" stroke-width="3"/>
+<path d="M134 178L126 186" stroke="#00ffe691" stroke-opacity="0.47" stroke-width="3"/>
+<path d="M52 2L44 10" stroke="#00ffe691" stroke-opacity="0.47" stroke-width="3"/>
+<path d="M123 178L115 186" stroke="#00ffe691" stroke-opacity="0.47" stroke-width="3"/>
+<path d="M41 2L33 10" stroke="#00ffe691" stroke-opacity="0.47" stroke-width="3"/>
+<path d="M112 178L104 186" stroke="#00ffe691" stroke-opacity="0.47" stroke-width="3"/>
+<path d="M30 2L22 10" stroke="#00ffe691" stroke-opacity="0.47" stroke-width="3"/>
+<path d="M101 178L93 186" stroke="#00ffe691" stroke-opacity="0.47" stroke-width="3"/>
+<path d="M19 2L11 10" stroke="#00ffe691" stroke-opacity="0.47" stroke-width="3"/>
+<path d="M90 178L82 186" stroke="#00ffe691" stroke-opacity="0.47" stroke-width="3"/>
+<path d="M4 106V177.5" stroke="#00ffe691" stroke-opacity="0.47" stroke-width="7"/>
+<path d="M4 106V64.5" stroke="#00ffe691" stroke-opacity="0.47"/>
+<path d="M138.5 17.5V7H125" stroke="#00ffe691" stroke-opacity="0.47"/>
+<path d="M143.5 32V2.5H71.5" stroke="#00ffe691" stroke-opacity="0.47" stroke-width="2"/>
+<path d="M9 161.5V187H1.5V180H28" stroke="#00ffe691" stroke-opacity="0.45"/>
+<path d="M10 183H12.5" stroke="#00ffe691" stroke-opacity="0.45" stroke-width="5"/>
+<path d="M13 183H15.5" stroke="#00ffe691" stroke-opacity="0.45" stroke-width="5"/>
+<path d="M16 183H18.5" stroke="#00ffe691" stroke-opacity="0.45" stroke-width="5"/>
+<path d="M19 183H21.5" stroke="#00ffe691" stroke-opacity="0.45" stroke-width="5"/>
+<path d="M22 183H24.5" stroke="#00ffe691" stroke-opacity="0.45" stroke-width="5"/>
+<path d="M25 183H27.5" stroke="#00ffe691" stroke-opacity="0.45" stroke-width="5"/>
+<path d="M1 191H28.5" stroke="#00ffe691" stroke-opacity="0.45" stroke-width="5"/>
+<path d="M77 182H34.5V193.5" stroke="#00ffe691" stroke-opacity="0.45" stroke-width="5"/>
+</svg>
