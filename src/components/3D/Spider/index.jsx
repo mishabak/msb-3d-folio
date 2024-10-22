@@ -4,7 +4,7 @@ export default function Spider(props) {
   const { nodes, materials } = useGLTF("models/spider.glb");
   return (
     <group {...props} dispose={null}>
-      <group position={[0, 2, 0]} scale={0.2}>
+      <group position={[-6, 0.5, -1]} scale={0.1}>
         <mesh
           geometry={nodes.Sphere_1.geometry}
           material={materials["Material.002"]}
