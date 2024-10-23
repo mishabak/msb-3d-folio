@@ -23,6 +23,7 @@ function Holo2() {
       position={[0, 1.403, -1]}
       rotation={[0, 0, 0]}
       width={1326}
+      id={2}
     >
       <Form />
     </HolographicWrapper>

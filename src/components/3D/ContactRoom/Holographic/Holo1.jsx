@@ -52,6 +52,7 @@ function Holo1() {
       position={[-2.112, 1.403, -0.11]}
       rotation={[0, 1.1, 0]}
       width={800}
+      id={1}
     >
       <Form />
     </HolographicWrapper>

@@ -3,11 +3,11 @@ import TextArea from "./TextArea";
 const Form = () => {
   return (
     <div
-    className="
+      className="
   text-[45px] drop-shadow-[0px_0px_3px_#86e9c3] font-thin flex flex-col items-center justify-center h-full"
-  >
-    <TextArea label={"Message"} />
-  </div>
+    >
+      <TextArea label={"Message"} />
+    </div>
   );
 };
 function Holo3() {
@@ -17,6 +17,7 @@ function Holo3() {
       position={[2.112, 1.403, -0.11]}
       rotation={[0, -1.1, 0]}
       width={800}
+      id={3}
     >
       <Form />
     </HolographicWrapper>
