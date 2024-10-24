@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useRef } from "react";
-import { selector_rooms } from "../../../features/Room/js/selector";
+import { selector_rooms } from "../../../features/js/selector";
 import { useSelector } from "react-redux";
 
 function BackgroundMusic({ name, audio, initialize }) {

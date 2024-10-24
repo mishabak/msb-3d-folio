@@ -5,3 +5,5 @@ export { default as ContactRoom } from "./ContactRoom";
 export { default as Puzzle } from "./Puzzle";
 export { default as Spider } from "./Spider";
 export { default as Clock } from "./Clock";
+export { default as TextGeometry } from "./TextGeometry";
+export { default as WallRack } from "./WallRack";

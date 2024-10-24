@@ -1,4 +1,4 @@
-import { selector_rooms } from "../../../../features/Room/js/selector";
+import { selector_rooms } from "../../../../features/js/selector";
 import { useSpring, animated } from "@react-spring/web";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
@@ -50,15 +50,16 @@ function HolographicWrapper({
 
   return (
     <Html
+      occlude={'blending'}
       scale={0.1}
-      className={`h-auto w-auto`}
+      className={`h-auto w-auto bg-black ring-black ring-1`}
       position={position}
-      rotation={rotation}
+      rotation={rotation}a
       transform={true}
     >
       <CustomParticles id={id} />
       <div
-        className={`flex flex-col justify-end overflow-hidden `}
+        className={`flex flex-col justify-end overflow-hidden`}
         style={{
           width: visible ? width : 0,
           height: visible ? height : 0,

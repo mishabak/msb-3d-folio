@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { CapsuleCollider, RigidBody } from "@react-three/rapier";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { Avatar } from "./Avatar";
+import { GirlCharacter } from "./Girl";
 
 function Index({ audio }) {
   const rb = useRef();
@@ -85,17 +85,17 @@ function Index({ audio }) {
       ref={rb}
       colliders={false}
       scale={0.35}
-      // position={[-13, 0.1, 10]}
-      position={[-12, 0.1, -5]}
+      position={[-13, 0.1, 10]}
+      // position={[-12, 0.1, -5]}
     >
       <group
         ref={charRef}
-        position={[0, 0.5, 0]}
+        position={[0, 1.2, 0]}
         rotation={[0, Math.PI / 2, 0]}
       >
-        <Avatar isMove={isMove} />
+        <GirlCharacter isMove={isMove} />
       </group>
-      <CapsuleCollider position={[0, 2, 0]} args={[0.4, 1]} />
+      <CapsuleCollider position={[0, 4, 0]} args={[1.4, 1.8]} />
     </RigidBody>
   );
 }

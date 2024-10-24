@@ -24,7 +24,7 @@ export default function Puzzle({
     <group
       scale={1.5}
       onClick={(e) => e.stopPropagation()}
-      position={[-3, 0.3, -3]}
+      position={[-3, 0.3, -2.5]}
       rotation={[-Math.PI / 2, 0, 0]}
     >
       <PuzzleFrame {...chldProps} />

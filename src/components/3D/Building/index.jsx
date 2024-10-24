@@ -4,7 +4,7 @@ import { RigidBody } from "@react-three/rapier";
 import useAudio from "../../../hooks/useAudio";
 import Lights from "./Lights";
 import { ROOM_PROPERTY } from "../../../util/constants";
-import { action_rooms } from "../../../features/room/js/slice";
+import { action_rooms } from "../../../features/js/slice";
 
 const FloorMesh = ({ name, geometry, material }) => {
   const { audio, initialize } = useAudio({

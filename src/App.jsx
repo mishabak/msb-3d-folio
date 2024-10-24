@@ -8,10 +8,11 @@ import { Physics } from "@react-three/rapier";
 import usePhysicDebug from "./hooks/usePhysicDebug";
 import { KEYBOARD_MAP } from "./util/constants";
 import { Character } from "./components/3D";
-import { Room } from "./features";
 import "./App.css";
 import useAudio from "./hooks/useAudio";
 import { useEffect } from "react";
+import Room from "./features/Room";
+import Interior from "./features/Interior";
 
 function App() {
   const { debugMode } = usePhysicDebug();
@@ -19,10 +20,11 @@ function App() {
   useEffect(() => {
     // initialize()
   }, []);
+  
   return (
     <main className="h-screen w-screen">
       <KeyboardControls map={KEYBOARD_MAP}>
-        <Canvas>
+        <Canvas style={{background:'black'}}>
           <ambientLight castShadow receiveShadow intensity={0.8} />
           <directionalLight intensity={0.7} />
           <OrbitControls />
@@ -30,6 +32,7 @@ function App() {
           <Physics debug={debugMode}>
             <Character audio={audio} />
             <Room />
+            <Interior />s
           </Physics>
         </Canvas>
       </KeyboardControls>
