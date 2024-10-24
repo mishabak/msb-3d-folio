@@ -32,7 +32,7 @@ function App() {
           <Physics debug={debugMode}>
             <Character audio={audio} />
             <Room />
-            <Interior />s
+            <Interior />
           </Physics>
         </Canvas>
       </KeyboardControls>
