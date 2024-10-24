@@ -90,12 +90,12 @@ function Index({ audio }) {
     >
       <group
         ref={charRef}
-        position={[0, 1.2, 0]}
+        position={[0, 1.7, 0]}
         rotation={[0, Math.PI / 2, 0]}
       >
         <GirlCharacter isMove={isMove} />
       </group>
-      <CapsuleCollider position={[0, 4, 0]} args={[1.4, 1.8]} />
+      <CapsuleCollider position={[0, 4, 0]} args={[1.4, 1.7]} />
     </RigidBody>
   );
 }

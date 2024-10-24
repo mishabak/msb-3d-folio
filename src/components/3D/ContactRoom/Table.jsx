@@ -1,17 +1,22 @@
 import { useGLTF } from "@react-three/drei";
 import { RigidBody, CuboidCollider } from "@react-three/rapier";
 import { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 
 import { RectAreaLightHelper } from "three/examples/jsm/helpers/RectAreaLightHelper";
 import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib";
+import { selector_rooms } from "../../../features/js/selector";
 
 const TableLights = () => {
   const reff = useRef();
+  const currentRoom = useSelector(selector_rooms.currentRoom);
   useEffect(() => {
     // RectAreaLightUniformsLib.init();
     // const helper = new RectAreaLightHelper(reff.current);
     // reff.current.add(helper);
   }, []);
+
+  if (currentRoom != "floor_5") return <></>;
   return (
     <>
       <rectAreaLight
@@ -46,7 +51,6 @@ const Colliders = () => {
   return (
     <>
       <CuboidCollider position={[0, 0.1, -2.2]} args={[7.4, 1.4, 1.3]} />
-      {/* for right leg */}
       <CuboidCollider
         position={[5.4, 0.1, 1.3]}
         rotation={[0, 0.504, 0]}
@@ -57,7 +61,6 @@ const Colliders = () => {
         rotation={[0, -0.1, 0]}
         args={[0.1, 1.4, 2.2]}
       />
-      {/* for left leg */}
       <CuboidCollider
         position={[-5.4, 0.1, 1.3]}
         rotation={[0, -0.504, 0]}
