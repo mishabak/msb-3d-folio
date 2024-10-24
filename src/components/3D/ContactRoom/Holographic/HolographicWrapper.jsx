@@ -1,6 +1,6 @@
 import { selector_rooms } from "../../../../features/js/selector";
 import { useSpring, animated } from "@react-spring/web";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Html } from "@react-three/drei";
 import { CustomParticles } from "../../../2D";
@@ -15,7 +15,6 @@ function HolographicWrapper({
 }) {
   const currentRoom = useSelector(selector_rooms.currentRoom);
   const childRef = useRef(null);
-  const [visible, setVisible] = useState(false);
   const [spring, api] = useSpring(() => ({
     height: 0,
     opacity: 0,
@@ -23,7 +22,6 @@ function HolographicWrapper({
       if (value.height == 700) {
         childRef.current.style.display = "block";
       } else {
-        setVisible(false);
         childRef.current.style.display = "none";
       }
     },
@@ -31,11 +29,10 @@ function HolographicWrapper({
 
   useEffect(() => {
     if (currentRoom == "floor_5") {
-      setVisible(true);
       api.start({
         height: height,
         opacity: 1,
-        delay:1800,
+        delay: 1800,
         config: { duration: 600 },
       });
     } else {
@@ -46,23 +43,27 @@ function HolographicWrapper({
         config: { duration: 600 },
       });
     }
-  }, [currentRoom, api, width, height]);
+  }, [currentRoom]);
+
+  const Particles = useMemo(() => {
+    return <CustomParticles id={id} />;
+  }, []);
 
   return (
     <Html
-      occlude={'blending'}
+      occlude={"blending"}
       scale={0.1}
-      className={`h-auto w-auto bg-black ring-black ring-1`}
+      className={`h-auto w-auto ring-1 ring-black`}
       position={position}
-      rotation={rotation}a
+      rotation={rotation}
       transform={true}
     >
-      <CustomParticles id={id} />
+      {Particles}
       <div
         className={`flex flex-col justify-end overflow-hidden`}
         style={{
-          width: visible ? width : 0,
-          height: visible ? height : 0,
+          width: width,
+          height: height,
         }}
       >
         <animated.div

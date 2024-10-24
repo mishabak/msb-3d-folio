@@ -16,15 +16,17 @@ import Interior from "./features/Interior";
 
 function App() {
   const { debugMode } = usePhysicDebug();
-  const { audio, initialize } = useAudio({ url: "/audio/character/steps.wav" });
+  const { audio, initialize } = useAudio({
+    url: "/audio/character/girlFootStep.mp3",
+  });
   useEffect(() => {
-    // initialize()
+    initialize();
   }, []);
-  
+
   return (
     <main className="h-screen w-screen">
       <KeyboardControls map={KEYBOARD_MAP}>
-        <Canvas style={{background:'black'}}>
+        <Canvas style={{backgroundColor:'black'}}>
           <ambientLight castShadow receiveShadow intensity={0.8} />
           <directionalLight intensity={0.7} />
           <OrbitControls />

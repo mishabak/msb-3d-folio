@@ -70,7 +70,7 @@ function Index({ audio }) {
 
   useEffect(() => {
     if (isMove) {
-      audio.setVolume(0.2);
+      audio.setVolume(0.3);
       audio.play();
       audio.setLoop(true);
     }
@@ -95,7 +95,7 @@ function Index({ audio }) {
       >
         <GirlCharacter isMove={isMove} />
       </group>
-      <CapsuleCollider position={[0, 4, 0]} args={[1.4, 1.7]} />
+      <CapsuleCollider position={[0, 4, 0]} args={[1.4, 1]} />
     </RigidBody>
   );
 }

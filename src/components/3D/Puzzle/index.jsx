@@ -2,12 +2,7 @@ import PuzzlePiece from "./PuzzlePiece";
 import PuzzleFrame from "./PuzzleFrame";
 import usePuzzle from "./usePuzzle";
 
-export default function Puzzle({
-  texture,
-  setDoorUnLock,
-  callbackPuzzleSloved,
-  PuzzleAudio,
-}) {
+export default function Puzzle({ puzzleId, setDoorUnLock, PuzzleAudio }) {
   const {
     EmptyPiece,
     EmptyRef,
@@ -16,9 +11,8 @@ export default function Puzzle({
     materials,
     nodes,
     shuffledPuzzle,
-    progress,
-  } = usePuzzle({ setDoorUnLock, callbackPuzzleSloved, PuzzleAudio });
-  const chldProps = { texture, materials, nodes };
+  } = usePuzzle({ setDoorUnLock, puzzleId, PuzzleAudio });
+  const chldProps = { materials, nodes };
 
   return (
     <group
@@ -36,6 +30,7 @@ export default function Puzzle({
               {...data}
               {...chldProps}
               handleClick={handleClick}
+              texture={`Puzzle_image_${puzzleId}`}
             />
           ))}
       </group>

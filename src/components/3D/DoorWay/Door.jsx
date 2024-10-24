@@ -1,9 +1,7 @@
 import { bool, number, object } from "prop-types";
 import { RigidBody } from "@react-three/rapier";
 import { animated } from "@react-spring/three";
-import DoorTitle from "./DoorTitle";
 import useDoor from "./useDoor";
-import Puzzle from "../Puzzle";
 import { useFrame } from "@react-three/fiber";
 import { useState } from "react";
 
@@ -50,25 +48,14 @@ function Door({
   doorNo,
   closeDoorAudio,
   openDoorAudio,
-  PuzzleAudio,
 }) {
-  const {
-    handleClick,
-    setDoorUnLock,
-    isDoorUnLock,
-    DOOR_POSITION,
-    springs,
-    callbackPuzzleSloved,
-  } = useDoor({ closeDoorAudio, openDoorAudio });
+  const { handleClick, DOOR_POSITION, springs } = useDoor({
+    closeDoorAudio,
+    openDoorAudio,
+    doorNo,
+  });
   return (
     <group onClick={handleClick}>
-      <Puzzle
-        PuzzleAudio={PuzzleAudio}
-        callbackPuzzleSloved={callbackPuzzleSloved}
-        setDoorUnLock={setDoorUnLock}
-        texture={`Puzzle_image_${doorNo}`}
-      />
-      {/* <DoorTitle isOpen={isDoorUnLock} /> */}
       <DoorPhysics nodes={nodes} DOOR_POSITION={DOOR_POSITION} />
       <animated.group
         position={[-1.107, -0.065, -2.332]}

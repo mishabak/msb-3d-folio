@@ -1,9 +1,12 @@
 import { useSpring } from "@react-spring/three";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { selector_rooms } from "../../../features/js/selector";
 
-function useDoor({ closeDoorAudio, openDoorAudio }) {
+function useDoor({ closeDoorAudio, openDoorAudio, doorNo }) {
   const [DoorState, SetDoorState] = useState("DEFAULT");
-  const [isDoorUnLock, setDoorUnLock] = useState(true);
+  const isPuzzleSolved = useSelector(selector_rooms[`solvedPuzzle_${doorNo}`]);
+
   const PREVENT_CLICK = useRef(false);
   const DOOR_POSITION = useRef(null);
   const [springs, api] = useSpring(() => ({
@@ -50,50 +53,26 @@ function useDoor({ closeDoorAudio, openDoorAudio }) {
     }
   }, [DoorState]);
 
-  useEffect(() => {
-    if (isDoorUnLock) {
-      SetDoorState("OPEN");
-      openDoorAudio.audio.play();
-    } else {
-      SetDoorState("CLOSE");
-    }
-  }, [isDoorUnLock]);
 
   const handleClick = () => {
-    if (isDoorUnLock && !PREVENT_CLICK.current)
+    if (isPuzzleSolved && !PREVENT_CLICK.current)
       SetDoorState((prev) => {
         if (prev == "OPEN") {
-          closeDoorAudio.audio.play();
           openDoorAudio.audio.stop();
+          closeDoorAudio.audio.play();
           return "CLOSE";
         } else {
-          openDoorAudio.audio.play();
           closeDoorAudio.audio.stop();
+          openDoorAudio.audio.play();
           return "OPEN";
         }
       });
   };
 
-  // CALLBACK FOR TRIGGER IF PUZZLE WAS SOLVED
-  const callbackPuzzleSloved = (flag) => {
-    if (flag) {
-      if (DoorState == "OPEN") return;
-      openDoorAudio.audio.play();
-      closeDoorAudio.audio.stop();
-    } else {
-      if (DoorState == "CLOSE") return;
-      openDoorAudio.audio.stop();
-      closeDoorAudio.audio.play();
-    }
-  };
-
   return {
     springs,
     handleClick,
-    setDoorUnLock,
     DOOR_POSITION,
-    isDoorUnLock,
-    callbackPuzzleSloved,
   };
 }
 

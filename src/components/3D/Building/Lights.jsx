@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { RectAreaLightHelper } from "three/examples/jsm/helpers/RectAreaLightHelper";
 import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib";
 import { selector_rooms } from "../../../features/js/selector";
-const AreaLight = ({ w, h, p, r, i = 3.5, currentRoom }) => {
+const AreaLight = ({ w, h, p, r, i = 1.3, currentRoom }) => {
   const lightref = useRef(null);
 
   useEffect(() => {

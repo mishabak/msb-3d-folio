@@ -3,6 +3,7 @@ import ParentFrame from "./ParentFrame";
 import ChildFrame from "./ChildFrame";
 import Door from "./Door";
 import useDoorBase from "./useDoorBase";
+import Puzzle from "../Puzzle";
 
 function Index({ nodes, materials }) {
   const props = { nodes, materials };
@@ -18,13 +19,13 @@ function Index({ nodes, materials }) {
       <ParentFrame materialId={materialId} {...props} />
       <ChildFrame materialId={materialId} {...props} />
       <Door
-        PuzzleAudio={PuzzleAudio}
         closeDoorAudio={closeDoorAudio}
         openDoorAudio={openDoorAudio}
         materialId={materialId}
         doorNo={idx + 1}
         {...props}
       />
+      <Puzzle PuzzleAudio={PuzzleAudio} puzzleId={idx + 1} />
     </group>
   ));
 }

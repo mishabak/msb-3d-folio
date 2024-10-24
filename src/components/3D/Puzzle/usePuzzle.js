@@ -2,14 +2,16 @@ import { selectRandomConfiguration } from "../../../util/selectRandomConfigurati
 import { PUZZLE_PROPERTY } from "../../../util/constants";
 import { useEffect, useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
+import { useDispatch } from "react-redux";
+import { action_rooms } from "../../../features/js/slice";
 
-function usePuzzle({ setDoorUnLock, callbackPuzzleSloved, PuzzleAudio }) {
+function usePuzzle({ puzzleId, PuzzleAudio }) {
   const { nodes, materials } = useGLTF("./models/puzzle.glb");
+  const dispatch = useDispatch();
   const [shuffledPuzzle, setShuffledPuzzle] = useState([]);
   const EmptyPiece = [0.32, 0.148, 0];
   const EmptyRef = useRef();
   const groupRef = useRef();
-  const [progress, setProgress] = useState(0);
 
   // when puzzle piece click -->>
   const handleClick = (e, play) => {
@@ -39,17 +41,12 @@ function usePuzzle({ setDoorUnLock, callbackPuzzleSloved, PuzzleAudio }) {
           }
         });
 
-        setProgress(flag);
         if (flag == 0) {
-          setDoorUnLock(true);
-          callbackPuzzleSloved(true);
+          dispatch(action_rooms.setPuzzleSolved({ id: puzzleId, value: true }));
         } else {
-          setDoorUnLock((prev) => {
-            if (prev) {
-              callbackPuzzleSloved(false);
-            }
-            return false;
-          });
+          dispatch(
+            action_rooms.setPuzzleSolved({ id: puzzleId, value: false })
+          );
         }
       });
     }
@@ -68,7 +65,6 @@ function usePuzzle({ setDoorUnLock, callbackPuzzleSloved, PuzzleAudio }) {
     handleClick,
     groupRef,
     nodes,
-    progress,
   };
 }
 useGLTF.preload("/puzzle.glb");
