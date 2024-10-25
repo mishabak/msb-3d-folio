@@ -1,7 +1,7 @@
 import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { CapsuleCollider, RigidBody } from "@react-three/rapier";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import * as THREE from "three";
 import { GirlCharacter } from "./Girl";
 
@@ -14,7 +14,6 @@ function Index({ audio }) {
   const rotationSpeed = 0.05;
   const cameraPosition = useRef(new THREE.Vector3());
   const cameraLookAt = useRef(new THREE.Vector3());
-  const [isMove, setMove] = useState(false);
 
   useFrame(({ camera, mouse }) => {
     if (rb?.current) {
@@ -43,9 +42,15 @@ function Index({ audio }) {
       }
 
       if (movement.forward !== 0 || movement.turn !== 0) {
-        setMove(true);
+        if (!audio.isPlaying) {
+          audio.setVolume(0.3);
+          audio.play();
+          audio.setLoop(true);
+        }
       } else {
-        setMove(false);
+        if (audio.isPlaying) {
+          audio.stop();
+        }
       }
 
       rb.current.setLinvel(vel, true);
@@ -68,32 +73,21 @@ function Index({ audio }) {
     }
   });
 
-  useEffect(() => {
-    if (isMove) {
-      audio.setVolume(0.3);
-      audio.play();
-      audio.setLoop(true);
-    }
-    return () => {
-      audio.stop();
-    };
-  }, [isMove]);
-
   return (
     <RigidBody
       lockRotations
       ref={rb}
       colliders={false}
       scale={0.35}
-      position={[-13, 0.1, 10]}
-      // position={[-12, 0.1, -5]}
+      // position={[-13, 0.1, 10]}
+      position={[-12, 0.1, -5]}
     >
       <group
         ref={charRef}
         position={[0, 1.7, 0]}
         rotation={[0, Math.PI / 2, 0]}
       >
-        <GirlCharacter isMove={isMove} />
+        <GirlCharacter />
       </group>
       <CapsuleCollider position={[0, 4, 0]} args={[1.4, 1]} />
     </RigidBody>

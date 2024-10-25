@@ -1,20 +1,41 @@
-import React, { useEffect, useRef } from "react";
-import { useGLTF, useAnimations } from "@react-three/drei";
+import { useRef } from "react";
+import { useGLTF, useAnimations, useKeyboardControls } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 
-export function GirlCharacter({ isMove }) {
+export function GirlCharacter() {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF("/models/girlCharacter.glb");
+  const [, get] = useKeyboardControls();
   const { actions } = useAnimations(animations, group);
-    useEffect(() => {
-      
-    if (isMove) {
-        actions["Idle"].stop()
-      actions["Walking"].play();
+
+  useFrame(() => {
+    if (get().forward || get().backward || get().left || get().right) {
+      if (get().backward) {
+        if (actions["Walking"].timeScale == 1) {
+          actions["Walking"].timeScale = -1;
+        }
+      } else {
+        if (actions["Walking"].timeScale == -1) {
+          actions["Walking"].timeScale = 1;
+        }
+      }
+
+      if (!actions["Walking"].isRunning()) {
+        actions["Walking"].play();
+      }
+
+      if (actions["Idle"].isRunning()) {
+        actions["Idle"].stop();
+      }
     } else {
+      if (!actions["Idle"].isRunning()) {
+        actions["Idle"].play();
+      }
+      if (actions["Walking"].isRunning()) {
         actions["Walking"].stop();
-      actions["Idle"].play()
+      }
     }
-  }, [isMove]);
+  });  
 
   return (
     <group ref={group} scale={3} dispose={null}>
