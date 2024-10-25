@@ -11,8 +11,8 @@ const FloorMesh = ({ name, geometry, material }) => {
     url: `/audio/roomMusic/${name}.mp3`,
   });
   const dispatch = useDispatch();
-  const onCollision = (floorName) => {
-    dispatch(action_rooms.setFloorColider(floorName));
+  const onCollision = () => {
+    dispatch(action_rooms.setFloorColider(name));
   };
 
   return (
@@ -20,7 +20,7 @@ const FloorMesh = ({ name, geometry, material }) => {
       type="fixed"
       colliders="trimesh"
       {...(name.startsWith("floor") && {
-        onCollisionEnter: () => onCollision(name),
+        onCollisionEnter: () => onCollision(),
       })}
     >
       <mesh name={name} geometry={geometry} material={material} />
