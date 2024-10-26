@@ -2,6 +2,7 @@ import { useAnimations, useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import { useDebounce } from "use-debounce";
 import { Fragment, useEffect, useRef, useState } from "react";
+import { useFrame } from "@react-three/fiber";
 export function HologramTouchPad(props) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
@@ -9,51 +10,55 @@ export function HologramTouchPad(props) {
   );
   const { actions } = useAnimations(animations, group);
   const Collision = () => {
-    const [isEnter, setIsEnter] = useState(null);
-    const IsEnterStable = useDebounce(isEnter, 1917);
+    let isEnter = null;
+    let keyFrameFlag = 0;
 
-    const handleAnimation = async (keyName) => {
-      if (actions[keyName]) {
-        actions[keyName].repetitions = 1;
-        actions[keyName].clampWhenFinished = true;
-        if (IsEnterStable[0]) {
-          actions[keyName].timeScale = 1;
-          actions[keyName]?.play();
-        } else if (!IsEnterStable[0]) {
-          actions[keyName].timeScale = -1;
-          actions[keyName]?.play();
-        }
+    useFrame(() => {
+      if (keyFrameFlag == 1) {
+        keyFrameFlag = 0;
+        [
+          "FooterAction",
+          "KeyboardAction",
+          "KeyboardFrameAction",
+          "LeftLeafAction",
+          "RightLeafAction",
+          "StandAction",
+        ].forEach((keyName) => {
+          let currentTime = actions[keyName].time;
+          actions[keyName].paused = false;
+          actions[keyName].timeScale = isEnter ? 1 : -1;
+          actions[keyName].clampWhenFinished = true;
+          actions[keyName].reset().time = currentTime;
+          actions[keyName].setLoop(2200);
+          actions[keyName].play();
+        });
       }
+    });
+
+    let timeOut = null;
+    let handleTimeout = (bool) => {
+      timeOut = setTimeout(() => {
+        isEnter = bool;
+        keyFrameFlag = 1;
+        timeOut = null;
+      }, 1000);
     };
-
-    useEffect(() => {
-      
-      [
-        "FooterAction",
-        "KeyboardAction",
-        "KeyboardFrameAction",
-        "LeftLeafAction",
-        "RightLeafAction",
-        "StandAction",
-      ].forEach((keyName) => handleAnimation(keyName));
-
-      return () => {
-        actions.FooterAction.stop();
-        actions.KeyboardAction.stop();
-        actions.KeyboardFrameAction.stop();
-        actions.LeftLeafAction.stop();
-        actions.RightLeafAction.stop();
-        actions.StandAction.stop();
-      };
-    }, [IsEnterStable[0]]);
 
     return (
       <RigidBody
         onCollisionEnter={() => {
-          setIsEnter(true);
+          timeOut && clearTimeout(timeOut);
+          if (!isEnter) {
+            actions.FooterAction.paused = true;
+            handleTimeout(true);
+          }
         }}
         onCollisionExit={() => {
-          setIsEnter(false);
+          timeOut && clearTimeout(timeOut);
+          if (isEnter) {
+            actions.FooterAction.paused = true;
+            handleTimeout(false);
+          }
         }}
         type="fixed"
         colliders={"cuboid"}
