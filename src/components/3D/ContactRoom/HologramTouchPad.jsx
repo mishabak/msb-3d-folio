@@ -1,19 +1,35 @@
 import { useAnimations, useGLTF } from "@react-three/drei";
-import { RigidBody } from "@react-three/rapier";
-import { useDebounce } from "use-debounce";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { RigidBody, CuboidCollider } from "@react-three/rapier";
+import { useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
+import { TOUCH_PAD_PROPERTY } from "../../../util/constants";
+import TouchPadPhysics from "./TouchPadPhysics";
+
 export function HologramTouchPad(props) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
     "/models/hologramTouchPad.glb"
   );
   const { actions } = useAnimations(animations, group);
+
+  const CustomMesh = ({ name, material, position = [0, 0, 0], scale = 1 }) => {
+    return (
+      <mesh
+        name={name}
+        geometry={nodes[name].geometry}
+        material={materials[material]}
+        position={position}
+        scale={scale}
+      />
+    );
+  };
+
   const Collision = () => {
     let isEnter = null;
     let keyFrameFlag = 0;
+    let isKeboardStable = false;
 
-    useFrame(() => {
+    const handleAnimation = () => {
       if (keyFrameFlag == 1) {
         keyFrameFlag = 0;
         [
@@ -33,11 +49,56 @@ export function HologramTouchPad(props) {
           actions[keyName].play();
         });
       }
+    };
+
+    const handleFinished = ({ action }) => {
+      const clip = action.getClip();
+      if (clip.name === "KeyboardAction") {
+        isKeboardStable = true;
+      }
+    };
+
+    useEffect(() => {
+      const keyboardAction = actions["KeyboardAction"];
+      const mixer = keyboardAction.getMixer();
+
+      mixer.addEventListener("finished", handleFinished);
+      return () => {
+        mixer.removeEventListener("finished", handleFinished);
+      };
+    }, []);
+
+    // color grade
+    let red = 3;
+    let green = 0.2;
+    let blue = 0.2;
+
+    function handleKeyboardColor() {
+      if (red > 0.2 && 0.2 >= blue) {
+        green = parseFloat((green + 0.01).toFixed(2));
+        red = parseFloat((red - 0.01).toFixed(2));
+      } else if (green > 0.2) {
+        blue = parseFloat((blue + 0.01).toFixed(2));
+        green = parseFloat((green - 0.01).toFixed(2));
+      } else if (blue > 0.2) {
+        red = parseFloat((red + 0.01).toFixed(2));
+        blue = parseFloat((blue - 0.01).toFixed(2));
+      }
+      materials["Material"].color.setRGB(red, green, blue);
+    }
+
+    useFrame(() => {
+      handleAnimation();
+      isKeboardStable && handleKeyboardColor();
     });
 
     let timeOut = null;
     let handleTimeout = (bool) => {
       timeOut = setTimeout(() => {
+        if (!bool) {
+          isKeboardStable = false;
+        }
+
         isEnter = bool;
         keyFrameFlag = 1;
         timeOut = null;
@@ -65,80 +126,33 @@ export function HologramTouchPad(props) {
       >
         <group
           name="floor"
-          position={[0.6, 0.005, 0]}
+          position={[0.628, 0.005, 0]}
           scale={[0.381, 0.003, 0.381]}
         >
-          <mesh
-            name="Cube"
-            geometry={nodes.Cube.geometry}
-            material={materials["Material.002"]}
-          />
-          <mesh
-            name="Cube_1"
-            geometry={nodes.Cube_1.geometry}
-            material={materials.Material}
-          />
+          {TOUCH_PAD_PROPERTY.floor.map((data) => (
+            <CustomMesh key={data.name} {...data} />
+          ))}
         </group>
       </RigidBody>
     );
   };
 
   return (
-    <Fragment>
-      <group
-        ref={group}
-        {...props}
-        scale={1}
-        position={[0, -0.52, 1.5]}
-        rotation={[0, -Math.PI / 2, 0]}
-        dispose={null}
-      >
-        <mesh
-          name="KeyboardFrame"
-          geometry={nodes.KeyboardFrame.geometry}
-          material={materials["Material.002"]}
-          position={[0.064, 1.282, 0]}
-          scale={0}
-        />
-        <mesh
-          name="LeftLeaf"
-          geometry={nodes.LeftLeaf.geometry}
-          material={materials["Material.002"]}
-          position={[-0.037, 0.711, 0.795]}
-          scale={0}
-        />
-        <mesh
-          name="Footer"
-          geometry={nodes.Footer.geometry}
-          material={materials["Material.002"]}
-          position={[0, -0.031, 0]}
-          scale={0}
-        />
-        <mesh
-          name="Keyboard"
-          geometry={nodes.Keyboard.geometry}
-          material={materials["Material.001"]}
-          position={[-0.028, 1.221, -0.001]}
-          scale={0}
-        />
-        <mesh
-          name="RightLeaf"
-          geometry={nodes.RightLeaf.geometry}
-          material={materials["Material.002"]}
-          position={[-0.037, 0.711, -0.783]}
-          scale={0}
-        />
-        <mesh
-          name="Stand"
-          geometry={nodes.Stand.geometry}
-          material={materials["Material.002"]}
-          position={[-0.038, -0.041, 0.002]}
-          scale={0}
-        />
-
-        <Collision />
+    <group
+      ref={group}
+      {...props}
+      scale={1}
+      position={[0, -0.52, 1.5]}
+      rotation={[0, -Math.PI / 2, 0]}
+    >
+      <group name="Scene">
+        {TOUCH_PAD_PROPERTY.pad.map((data) => (
+          <CustomMesh key={data.name} {...data} />
+        ))}
       </group>
-    </Fragment>
+      <TouchPadPhysics />
+      <Collision />
+    </group>
   );
 }
 

@@ -18,18 +18,23 @@ function Index({ audio }) {
   useFrame(({ camera, mouse }) => {
     if (rb?.current) {
       const vel = rb.current.linvel();
+      window.characterRotValue = charRef?.current.quaternion;
       const movement = { forward: 0, turn: 0 };
 
-      if (get().forward) movement.forward = 1;
-      if (get().backward) movement.forward = -1;
-      if (get().left) movement.turn = 1;
-      if (get().right) movement.turn = -1;
+      if (!window.disableMovement) {
+        if (get().forward) movement.forward = 1;
+        if (get().backward) movement.forward = -1;
+        if (get().left) movement.turn = 1;
+        if (get().right) movement.turn = -1;
+      }
 
       if (movement.turn !== 0) {
         charRef.current.rotation.y += movement.turn * rotationSpeed;
+        window.extraVision = false;
       }
 
       if (movement.forward !== 0) {
+        window.extraVision = false;
         const forwardDirection = new THREE.Vector3(0, 0, 1).applyQuaternion(
           charRef.current.quaternion
         );
@@ -61,7 +66,22 @@ function Index({ audio }) {
       direction.negate();
 
       cameraPosition.current.copy(charPosition).addScaledVector(direction, 2);
-      cameraPosition.current.y += 2;
+
+      switch (window.extraVision) {
+        case "input":
+          cameraPosition.current.x += 0.1;
+          cameraPosition.current.y += 2.7;
+          cameraPosition.current.z += 0.3;
+          break;
+        case "textArea":
+          cameraPosition.current.x += -0.6;
+          cameraPosition.current.y += 2.7;
+          cameraPosition.current.z += 0.3;
+          break;
+        default:
+          cameraPosition.current.y += 2;
+          break;
+      }
 
       camera.position.lerp(cameraPosition.current, 0.1);
       cameraLookAt.current.set(

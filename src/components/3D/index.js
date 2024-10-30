@@ -7,3 +7,5 @@ export { default as Spider } from "./Spider";
 export { default as Clock } from "./Clock";
 export { default as TextGeometry } from "./TextGeometry";
 export { default as WallRack } from "./WallRack";
+export { default as KeyboardPad } from "./KeyboardPad";
+export { default as ChainBarrier } from "./ChainBarrier";

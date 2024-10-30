@@ -8,6 +8,14 @@ function TextArea({ label, value, handleChange = () => {}, className = "" }) {
           className="object-fill w-full h-full absolute"
         />
         <textarea
+          onFocus={() => {
+            window.disableMovement = true;
+            window.extraVision = "textArea";
+          }}
+          onBlur={() => {
+            window.disableMovement = false;
+            window.extraVision = false;
+          }}
           onChange={handleChange}
           value={value}
           type="text"

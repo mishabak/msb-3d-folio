@@ -9,33 +9,35 @@ export function GirlCharacter() {
   const { actions } = useAnimations(animations, group);
 
   useFrame(() => {
-    if (get().forward || get().backward || get().left || get().right) {
-      if (get().backward) {
-        if (actions["Walking"].timeScale == 1) {
-          actions["Walking"].timeScale = -1;
+    if (!window.disableMovement) {
+      if (get().forward || get().backward || get().left || get().right) {
+        if (get().backward) {
+          if (actions["Walking"].timeScale == 1) {
+            actions["Walking"].timeScale = -1;
+          }
+        } else {
+          if (actions["Walking"].timeScale == -1) {
+            actions["Walking"].timeScale = 1;
+          }
+        }
+
+        if (!actions["Walking"].isRunning()) {
+          actions["Walking"].play();
+        }
+
+        if (actions["Idle"].isRunning()) {
+          actions["Idle"].stop();
         }
       } else {
-        if (actions["Walking"].timeScale == -1) {
-          actions["Walking"].timeScale = 1;
+        if (!actions["Idle"].isRunning()) {
+          actions["Idle"].play();
+        }
+        if (actions["Walking"].isRunning()) {
+          actions["Walking"].stop();
         }
       }
-
-      if (!actions["Walking"].isRunning()) {
-        actions["Walking"].play();
-      }
-
-      if (actions["Idle"].isRunning()) {
-        actions["Idle"].stop();
-      }
-    } else {
-      if (!actions["Idle"].isRunning()) {
-        actions["Idle"].play();
-      }
-      if (actions["Walking"].isRunning()) {
-        actions["Walking"].stop();
-      }
     }
-  });  
+  });
 
   return (
     <group ref={group} scale={3} dispose={null}>

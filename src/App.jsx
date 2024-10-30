@@ -25,7 +25,7 @@ function App() {
 
   return (
     <main className="h-screen w-screen">
-      <KeyboardControls map={KEYBOARD_MAP}>
+      <KeyboardControls map={window.extraVision?[]:KEYBOARD_MAP}>
         <Canvas style={{backgroundColor:'black'}}>
           <ambientLight castShadow receiveShadow intensity={0.8} />
           <directionalLight intensity={0.7} />

@@ -1,0 +1,50 @@
+{
+  "pad": [
+    {
+      "name": "KeyboardFrame",
+      "material": "Material.002",
+      "position": [0.064, 1.282, 0],
+      "scale": 0
+    },
+    {
+      "name": "LeftLeaf",
+      "material": "Material.002",
+      "position": [-0.037, 0.711, 0.795],
+      "scale": 0
+    },
+    {
+      "name": "Footer",
+      "material": "Material.002",
+      "position": [0, -0.031, 0],
+      "scale": 0
+    },
+    {
+      "name": "Keyboard",
+      "material": "Material",
+      "position": [-0.028, 1.221, -0.001],
+      "scale": 0
+    },
+    {
+      "name": "RightLeaf",
+      "material": "Material.002",
+      "position": [-0.037, 0.711, -0.783],
+      "scale": 0
+    },
+    {
+      "name": "Stand",
+      "material": "Material.002",
+      "position": [-0.038, -0.041, 0.002],
+      "scale": 0
+    }
+  ],
+  "floor": [
+    {
+      "name": "Cube",
+      "material": "Material.002"
+    },
+    {
+      "name": "Cube_1",
+      "material": "Material.001"
+    }
+  ]
+}
