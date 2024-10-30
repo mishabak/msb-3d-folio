@@ -1,7 +1,7 @@
-import Spider from "../Spider";
 import HolographicHtml from "./Holographic";
 import Table from "../Table";
 import { KeyboardPad } from "..";
+import Audio from "./Audio";
 
 function Index() {
   return (
@@ -9,7 +9,7 @@ function Index() {
       <Table />
       <HolographicHtml />
       <KeyboardPad />
-      {/* <Spider /> */}
+      <Audio />
     </group>
   );
 }

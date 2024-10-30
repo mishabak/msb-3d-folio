@@ -1,4 +1,23 @@
+import { useDispatch } from "react-redux";
+import { action_rooms } from "../../../../features/js/slice";
+
 function TextArea({ label, value, handleChange = () => {}, className = "" }) {
+  const dispatch = useDispatch();
+
+  function handleFocus() {
+    window.disableMovement = true;
+    window.extraVision = "TEXT_AREA";
+    dispatch(
+      action_rooms.setContactRoomSounds({ type: "TEXT_AREA", play: true })
+    );
+  }
+  function handleBlur() {
+    window.disableMovement = false;
+    window.extraVision = false;
+    dispatch(
+      action_rooms.setContactRoomSounds({ type: "TEXT_AREA", play: false })
+    );
+  }
   return (
     <div className={`w-[650px] ${className}`}>
       <label className="text-[38px] ml-14">{label}</label>
@@ -8,14 +27,8 @@ function TextArea({ label, value, handleChange = () => {}, className = "" }) {
           className="object-fill w-full h-full absolute"
         />
         <textarea
-          onFocus={() => {
-            window.disableMovement = true;
-            window.extraVision = "textArea";
-          }}
-          onBlur={() => {
-            window.disableMovement = false;
-            window.extraVision = false;
-          }}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           onChange={handleChange}
           value={value}
           type="text"

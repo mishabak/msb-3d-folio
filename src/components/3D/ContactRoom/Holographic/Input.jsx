@@ -1,4 +1,25 @@
+import { useDispatch } from "react-redux";
+import { action_rooms } from "../../../../features/js/slice";
+
 function Input({ label, value, handleChange = () => {}, className = "" }) {
+  const dispatch = useDispatch();
+
+  function handleFocus() {
+    window.disableMovement = true;
+    window.extraVision = "INPUT";
+    dispatch(
+      action_rooms.setContactRoomSounds({ type: "INPUT", play: true })
+    );
+  }
+
+  function handleBlur() {
+    window.disableMovement = false;
+    window.extraVision = false;
+    dispatch(
+      action_rooms.setContactRoomSounds({ type: "INPUT", play: false })
+    );
+  }
+
   return (
     <div className={`w-[900px] ${className}`}>
       <label className="text-[38px] pl-4 drop-shadow-[0px_0px_3px_#86e9c3]">
@@ -11,20 +32,8 @@ function Input({ label, value, handleChange = () => {}, className = "" }) {
           className="object-fill w-full h-full absolute"
         />
         <input
-          onFocus={() => {
-            if (Math.abs(window.characterQuaternion.w) < 0.05) {
-              console.log('stady');
-              
-            } else {
-              console.log('not stady..');
-            }
-            window.disableMovement = true;
-            window.extraVision = "input";
-          }}
-          onBlur={() => {
-            window.disableMovement = false;
-            window.extraVision = false;
-          }}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           onChange={handleChange}
           value={value}
           type="text"

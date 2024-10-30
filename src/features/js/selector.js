@@ -2,31 +2,35 @@ import { createSelector } from "@reduxjs/toolkit";
 
 const rooms = (state) => state.rooms;
 
-// state for check character on which floor eg: room1_floor,room2_floor etc.
-const currentRoom = createSelector([rooms], ({ currentRoom }) => currentRoom);
+// General selector for retrieving a puzzle state
+const makeSolvedPuzzleSelector = (puzzleKey) =>
+  createSelector([rooms], (state) => state[puzzleKey]);
 
-// create selector for puzzle solved state -->>
-const solvedPuzzle_1 = createSelector(
+// Selectors for each puzzle
+const solvedPuzzles = {
+  solvedPuzzle_1: makeSolvedPuzzleSelector("solvedPuzzle_1"),
+  solvedPuzzle_2: makeSolvedPuzzleSelector("solvedPuzzle_2"),
+  solvedPuzzle_3: makeSolvedPuzzleSelector("solvedPuzzle_3"),
+  solvedPuzzle_4: makeSolvedPuzzleSelector("solvedPuzzle_4"),
+};
+
+// Selector for current room
+const currentRoom = createSelector([rooms], (state) => state.currentRoom);
+
+// Selector for other states
+const contactRoomSounds = createSelector(
   [rooms],
-  ({ solvedPuzzle_1 }) => solvedPuzzle_1
+  (state) => state.contactRoomSounds
 );
-const solvedPuzzle_2 = createSelector(
+const animateHolo1Text = createSelector(
   [rooms],
-  ({ solvedPuzzle_2 }) => solvedPuzzle_2
-);
-const solvedPuzzle_3 = createSelector(
-  [rooms],
-  ({ solvedPuzzle_3 }) => solvedPuzzle_3
-);
-const solvedPuzzle_4 = createSelector(
-  [rooms],
-  ({ solvedPuzzle_4 }) => solvedPuzzle_4
+  (state) => state.animateHolo1Text
 );
 
+// Exporting selectors
 export const selector_rooms = {
   currentRoom,
-  solvedPuzzle_1,
-  solvedPuzzle_2,
-  solvedPuzzle_3,
-  solvedPuzzle_4,
+  ...solvedPuzzles,
+  contactRoomSounds,
+  animateHolo1Text,
 };

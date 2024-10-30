@@ -73,12 +73,12 @@ function useCharacter() {
     cameraPosition.current.copy(charPosition).addScaledVector(direction, 2);
 
     switch (window.extraVision) {
-      case "input":
+      case "INPUT":
         cameraPosition.current.x += 0.1;
         cameraPosition.current.y += 2.7;
         cameraPosition.current.z += 0.3;
         break;
-      case "textArea":
+      case "TEXT_AREA":
         cameraPosition.current.x += -0.6;
         cameraPosition.current.y += 2.7;
         cameraPosition.current.z += 0.3;
