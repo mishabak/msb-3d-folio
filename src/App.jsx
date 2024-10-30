@@ -8,31 +8,23 @@ import { Physics } from "@react-three/rapier";
 import usePhysicDebug from "./hooks/usePhysicDebug";
 import { KEYBOARD_MAP } from "./util/constants";
 import { Character } from "./components/3D";
-import "./App.css";
-import useAudio from "./hooks/useAudio";
-import { useEffect } from "react";
-import Room from "./features/Room";
 import Interior from "./features/Interior";
+import Room from "./features/Room";
+import "./App.css";
 
 function App() {
   const { debugMode } = usePhysicDebug();
-  const { audio, initialize } = useAudio({
-    url: "/audio/character/girlFootStep.mp3",
-  });
-  useEffect(() => {
-    initialize();
-  }, []);
 
   return (
     <main className="h-screen w-screen">
-      <KeyboardControls map={window.extraVision?[]:KEYBOARD_MAP}>
-        <Canvas style={{backgroundColor:'black'}}>
+      <KeyboardControls map={window.extraVision ? [] : KEYBOARD_MAP}>
+        <Canvas style={{ backgroundColor: "black" }}>
           <ambientLight castShadow receiveShadow intensity={0.8} />
           <directionalLight intensity={0.7} />
           <OrbitControls />
           <PerspectiveCamera makeDefault position={[-40, 5, 10]} fov={70} />
           <Physics debug={debugMode}>
-            <Character audio={audio} />
+            <Character />
             <Room />
             <Interior />
           </Physics>

@@ -12,7 +12,7 @@ function Input({ label, value, handleChange = () => {}, className = "" }) {
         />
         <input
           onFocus={() => {
-            if (Math.abs(window.characterRotValue.w) < 0.05) {
+            if (Math.abs(window.characterQuaternion.w) < 0.05) {
               console.log('stady');
               
             } else {
