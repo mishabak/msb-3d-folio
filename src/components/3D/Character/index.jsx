@@ -3,7 +3,7 @@ import { GirlCharacter } from "./Girl";
 import useCharacter from "./useCharacter";
 
 function Index() {
-  const { rb, charRef, audio } = useCharacter();
+  const { rb, charRef } = useCharacter();
 
   return (
     <RigidBody
