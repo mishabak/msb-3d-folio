@@ -10,24 +10,11 @@ export default function Index(props) {
       {...props}
     >
       <mesh
-        geometry={nodes.Piece.geometry}
-        material={nodes.Piece.material}
-        position={[5.866, 0.094, -8.238]}
-        rotation={[0, 0, -Math.PI / 2]}
-        scale={0.027}
-      />
-      <mesh
         geometry={nodes.ChainLeft.geometry}
         material={materials.MaterialChain}
         position={[0.728, 0.57, -0.988]}
         rotation={[-Math.PI, 0, -1.781]}
         scale={0.005}
-      />
-      <mesh
-        geometry={nodes.phil.geometry}
-        material={nodes.phil.material}
-        position={[4.982, 0.462, -7.04]}
-        scale={[0.07, 0.412, 0.07]}
       />
       <mesh
         geometry={nodes.ChainRight.geometry}
