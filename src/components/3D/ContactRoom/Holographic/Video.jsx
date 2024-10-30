@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import { bool, func, number, string } from "prop-types";
+import { useEffect, useRef } from "react";
 
-function Video({ muted = true, className }) {
+function Video({ muted = true, className, videoCallback = () => {}, id = 0 }) {
   const videoRef = useRef();
 
   useEffect(() => {
@@ -8,8 +9,13 @@ function Video({ muted = true, className }) {
       videoRef.current.volume = 0.1;
     }
   }, []);
+
   return (
     <video
+      onEnded={() => {
+        videoCallback(id);
+        videoRef.current.style.display = "none";
+      }}
       ref={videoRef}
       className={`absolute z-[-1]  w-full ${className}`}
       src="/video/hacker wallpaper video download.mp4"
@@ -19,5 +25,12 @@ function Video({ muted = true, className }) {
     />
   );
 }
+
+Video.propTypes = {
+  muted: bool,
+  className: string,
+  videoCallback: func,
+  id: number,
+};
 
 export default Video;
