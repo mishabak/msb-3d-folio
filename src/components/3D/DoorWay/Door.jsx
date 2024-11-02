@@ -4,6 +4,7 @@ import { animated } from "@react-spring/three";
 import useDoor from "./useDoor";
 import { useFrame } from "@react-three/fiber";
 import { useState } from "react";
+import { SignBoard } from "..";
 
 const DoorPhysics = ({ DOOR_POSITION, nodes }) => {
   const [ab, abs] = useState({ position: [0, 0, 0], rotation: [0, 0, 0] });
@@ -73,6 +74,7 @@ function Door({
           geometry={nodes.Door_3.geometry}
           material={materials[materialId.d]}
         />
+        <SignBoard doorNo={doorNo} />
       </animated.group>
     </group>
   );
