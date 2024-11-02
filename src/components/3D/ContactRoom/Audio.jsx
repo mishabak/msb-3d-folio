@@ -8,6 +8,7 @@ function Audio() {
     url: "/audio/hologram/selectEffect.mp3",
   });
   const contactRoomSounds = useSelector(selector_rooms.contactRoomSounds);
+
   const handleSound = async () => {
     switch (contactRoomSounds.type) {
       case "INPUT":
@@ -26,7 +27,7 @@ function Audio() {
     handleSound();
   }, [contactRoomSounds.play, contactRoomSounds.type]);
 
-  return <Fragment />;
+  return null;
 }
 
 export default Audio;

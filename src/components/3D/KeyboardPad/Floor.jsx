@@ -19,8 +19,8 @@ function Floor({ nodes, materials, actions }) {
     >
       <group
         name="floor"
-        position={[0.628, 0.005, 0]}
-        scale={[0.381, 0.003, 0.381]}
+        position={[0.455, 0.005, 0]}
+        scale={[0.220, 0.003, 0.220]}
       >
         {TOUCH_PAD_PROPERTY.floor.map((data) => (
           <CustomMesh {...glbProps} key={data.name} {...data} />
