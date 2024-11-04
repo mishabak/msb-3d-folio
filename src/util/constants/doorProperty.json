@@ -1,6 +1,10 @@
 [
   {
     "name": "DoorWay_1",
+    "titles": {
+      "t": "Skills Showcase",
+      "s": "See what I can do!"
+    },
     "materialId": {
       "a": "Door1_A",
       "b": "Door2_A",
@@ -12,6 +16,10 @@
   },
   {
     "name": "DoorWay_2",
+    "titles": {
+      "t": "Theater",
+      "s": "Watch my work in action."
+    },
     "materialId": {
       "a": "Door2_A",
       "b": "Door3_A",
@@ -23,6 +31,11 @@
   },
   {
     "name": "DoorWay_3",
+    "titles": {
+      "t": "Portfolio Gallery",
+      "s": "Explore my top projects.",
+      "clr":"white"
+    },
     "materialId": {
       "a": "Door3_A",
       "b": "Door4_A",
@@ -34,6 +47,10 @@
   },
   {
     "name": "DoorWay_4",
+    "titles": {
+      "t": "Let’s Talk",
+      "s": "Reach out for collaborations."
+    },
     "materialId": {
       "a": "Door4_A",
       "b": "Door5_A",

@@ -1,16 +1,31 @@
 import { Text } from "@react-three/drei";
-function DoorTitle({isOpen}) {
+import { object } from "prop-types";
+function DoorTitle({ titles }) {
+  let color = titles?.clr || "black";
   return (
-    <Text
-      onClick={(e)=>e.stopPropagation()}
+    <group
+      onClick={(e) => e.stopPropagation()}
+      position={[0.1, 0.3, -5.7]}
       rotation={[-Math.PI / 2, 0, 0]}
-      position={[0.1, 0.3, -6]}
-      fontSize={0.4}
-      color={isOpen ? "green" : "red"}
     >
-      {isOpen ? "Open" : "Closed"}
-    </Text>
+      <Text
+        position={[0, 0.3, 0]}
+        fontSize={0.3}
+        fontWeight={600}
+        color={color}
+      >
+        {titles.t}
+      </Text>
+
+      <Text fontSize={0.16} color={color}>
+        {titles.s}
+      </Text>
+    </group>
   );
 }
+
+DoorTitle.propTypes = {
+  titles: object,
+};
 
 export default DoorTitle;
