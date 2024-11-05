@@ -22,7 +22,7 @@ function useKeyboardAudio() {
 
   const handleKeyPress = (event) => {
     // Only run if the focus is on input or text area
-
+    window.isTyping = true;
     if (window.extraVision === "INPUT" || window.extraVision === "TEXT_AREA") {
       const randomAudio =
         TypingKey[Math.floor(Math.random() * TypingKey.length)];
@@ -38,9 +38,18 @@ function useKeyboardAudio() {
     }
   };
 
+  function handleKeyUp() {
+    window.isTyping = false;
+  }
+
   useEffect(() => {
     window.addEventListener("keydown", handleKeyPress);
-    return () => window.removeEventListener("keydown", handleKeyPress);
+    window.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
   }, [TypingKey]);
 
   return {};
