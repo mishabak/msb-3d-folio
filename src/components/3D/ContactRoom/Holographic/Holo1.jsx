@@ -12,6 +12,28 @@ const Form = () => {
     const cofm = confirm("Are you sure you want to download the resume?");
     if (cofm) buttonRef.current.click();
   };
+
+  const Desc = () => {
+    return (
+      <div className="text-[22px] w-[400px] ">
+        {
+          <div className="typing">
+            {[
+              "Download my resume to learn",
+              "more about my skills,",
+              "experience, and achievements.",
+              "I look forward to the",
+              "opportunity to discuss how I",
+              "can contribute to your team!",
+            ].map((text, idx) => (
+              <div key={idx + 1}>{text}</div>
+            ))}
+          </div>
+        }
+      </div>
+    );
+  };
+
   return (
     <div
       className="
@@ -23,12 +45,7 @@ const Form = () => {
         download={"resume.pdf"}
         className="hidden"
       ></a>
-      <div className="text-[22px] w-[400px]">
-        Download my resume to learn more about my skills, experience, and
-        achievements. I look forward to the opportunity to discuss how I can
-        contribute to your team!
-      </div>
-
+      <Desc />
       <div className="bg-contain w-[275px] h-[300px] relative">
         <img
           onClick={handleResumeClick}
@@ -46,6 +63,8 @@ const Form = () => {
   );
 };
 function Holo1() {
+  console.log("trigger...");
+
   return (
     <HolographicWrapper
       height={700}
