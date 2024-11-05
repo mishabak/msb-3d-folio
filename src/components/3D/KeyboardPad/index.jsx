@@ -5,6 +5,7 @@ import CustomMesh from "./CustomMesh";
 import { useRef } from "react";
 import Floor from "./Floor";
 import { ChainBarrier } from "..";
+import useKeyboardAudio from "./useKeyboardAudio";
 
 export default function Index(props) {
   const group = useRef();
@@ -13,7 +14,7 @@ export default function Index(props) {
   );
   const { actions } = useAnimations(animations, group);
   const glbProp = { nodes, materials, actions };
-
+  useKeyboardAudio()
   return (
     <group
       ref={group}
