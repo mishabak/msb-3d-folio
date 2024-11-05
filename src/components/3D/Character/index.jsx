@@ -11,8 +11,8 @@ function Index() {
       ref={rb}
       colliders={false}
       scale={0.35}
-      // position={[-13, 0.1, 10]}
-      position={[-12, 0.1, -5]}
+      position={[-13, 0.1, 10]}
+      // position={[-12, 0.1, -5]}
     >
       <group
         ref={charRef}

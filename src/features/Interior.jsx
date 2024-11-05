@@ -1,5 +1,5 @@
 import { useGLTF } from "@react-three/drei";
-import { Clock, TextGeometry, WallRack } from "../components/3D";
+import { BallCycle, Clock, TextGeometry, WallRack } from "../components/3D";
 import { MYSELF_PROPERTY } from "../util/constants";
 function Interior() {
   const { nodes, materials } = useGLTF("/models/wallRack.glb");
@@ -24,7 +24,8 @@ function Interior() {
         scale={[1.8, 1.7, 3.7]}
       />
 
-      <Clock position={[10.9, 4.5,3.2]} rotation={[0, Math.PI, 0]} scale={0.3} />
+      <Clock position={[10.9, 4.5, 3.2]} rotation={[0, Math.PI, 0]} scale={0.3} />
+      <BallCycle/>
     </group>
   );
 }
