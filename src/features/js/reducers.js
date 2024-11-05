@@ -12,4 +12,8 @@ export default {
   setAnimateHolo1Text: (state, { payload }) => {
     state.animateHolo1Text = payload;
   },
+  setCharacterMessenger: (state, { payload }) => {
+    state.characterMessenger.visible = payload?.visible || false;
+    state.characterMessenger.text = payload?.text || "";
+  },
 };

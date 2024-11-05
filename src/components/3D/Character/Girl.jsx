@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useGLTF, useAnimations, useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+import Messenger from "./Messenger";
 
 export function GirlCharacter() {
   const group = useRef();
@@ -52,6 +53,7 @@ export function GirlCharacter() {
           <primitive object={nodes.mixamorigHips} />
         </group>
       </group>
+      <Messenger/>
     </group>
   );
 }

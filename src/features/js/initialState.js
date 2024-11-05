@@ -10,4 +10,8 @@ export default {
     type: "UNKNOWN",
   },
   animateHolo1Text: false,
+  characterMessenger: {
+    visible: false,
+    text: "",
+  },
 };

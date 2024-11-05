@@ -40,7 +40,7 @@ function useKeyboardPad({ actions, materials }) {
 
   function handleTimeout(isCollide) {
     flagRef.current.timeOut = setTimeout(() => {
-      flagRef.current.isKeyboardVisible = isCollide;
+      flagRef.current.isKeyboardVisible = false;
       flagRef.current.isEnter = isCollide;
       flagRef.current.keyFrameFlag = 1;
       flagRef.current.timeOut = null;
@@ -85,6 +85,10 @@ function useKeyboardPad({ actions, materials }) {
   useFrame(() => {
     handleAnimation();
     flagRef.current.isKeyboardVisible && handleKeyboardColor();
+    window.keyboardPad = {
+      visible: flagRef.current.isKeyboardVisible,
+      onFloor: flagRef.current.isEnter,
+    };
   });
 
   useEffect(() => {

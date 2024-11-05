@@ -63,8 +63,6 @@ const Form = () => {
   );
 };
 function Holo1() {
-  console.log("trigger...");
-
   return (
     <HolographicWrapper
       height={700}

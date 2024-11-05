@@ -27,10 +27,16 @@ const animateHolo1Text = createSelector(
   (state) => state.animateHolo1Text
 );
 
+const characterMessenger = createSelector(
+  [rooms],
+  (state) => state.characterMessenger
+);
+
 // Exporting selectors
 export const selector_rooms = {
   currentRoom,
   ...solvedPuzzles,
   contactRoomSounds,
   animateHolo1Text,
+  characterMessenger,
 };

@@ -1,16 +1,21 @@
 import { useDispatch } from "react-redux";
 import { action_rooms } from "../../../../features/js/slice";
+import { useRef } from "react";
 
 function TextArea({ label, value, handleChange = () => {}, className = "" }) {
   const dispatch = useDispatch();
+  const textareaRef = useRef();
 
-  function handleFocus() {
-    window.disableMovement = true;
-    window.extraVision = "TEXT_AREA";
+  function handleCharacterMsg(text) {
+    if (!text) return;
     dispatch(
-      action_rooms.setContactRoomSounds({ type: "TEXT_AREA", play: true })
+      action_rooms.setCharacterMessenger({
+        visible: true,
+        text,
+      })
     );
   }
+
   function handleBlur() {
     window.disableMovement = false;
     window.extraVision = false;
@@ -18,6 +23,29 @@ function TextArea({ label, value, handleChange = () => {}, className = "" }) {
       action_rooms.setContactRoomSounds({ type: "TEXT_AREA", play: false })
     );
   }
+
+  function handleFocus() {
+    if (window.keyboardPad.onFloor) {
+      if (Math.abs(window.characterQuaternion.w) <= 0.04) {
+        if (window.keyboardPad.visible) {
+          window.disableMovement = true;
+          window.extraVision = "TEXT_AREA";
+          dispatch(
+            action_rooms.setContactRoomSounds({ type: "TEXT_AREA", play: true })
+          );
+          return;
+        } else {
+          handleCharacterMsg("Please wait for the keyboard");
+        }
+      } else {
+        handleCharacterMsg("Stand Straight");
+      }
+    } else {
+      handleCharacterMsg("Please position yourself over the footprint");
+    }
+    textareaRef.current.blur();
+  }
+
   return (
     <div className={`w-[650px] ${className}`}>
       <label className="text-[38px] ml-14">{label}</label>
@@ -27,6 +55,7 @@ function TextArea({ label, value, handleChange = () => {}, className = "" }) {
           className="object-fill w-full h-full absolute"
         />
         <textarea
+          ref={textareaRef}
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={handleChange}
