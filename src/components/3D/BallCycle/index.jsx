@@ -42,7 +42,7 @@ export default function Index() {
   );
 
   const Basket = () => (
-    <group position={[6.145, -0.232, 0.217]} scale={[0.47, 0.353, 0.47]}>
+    <group position={[6.279, -0.232, 0.328]} scale={[0.47, 0.353, 0.47]}>
       <RigidBody type={"fixed"} colliders={"trimesh"}>
         <mesh
           name="Basket_1"
@@ -115,7 +115,7 @@ export default function Index() {
   return currentRoom == "floor_1" ? (
     <group
       scale={[0.4, 0.3, 0.4]}
-      position={[10.93, 0.43, 8.78]}
+      position={[10.9276, 0.43, 8.8295]}
       rotation={[0, Math.PI, 0]}
     >
       {BALL_Rail_PROPERTY.map((dta, key) =>
