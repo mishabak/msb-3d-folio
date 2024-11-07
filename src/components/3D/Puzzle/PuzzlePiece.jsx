@@ -25,6 +25,8 @@ function PuzzlePiece({ position, nodes, materials, texture, handleClick, id }) {
   };
   return (
     <animated.group
+      onPointerEnter={() => (document.body.style.cursor = "pointer")}
+      onPointerLeave={() => (document.body.style.cursor = "auto")}
       name={nodes[`piece_${id}`]?.name}
       onClick={(e) => {
         handleClick(e, play);

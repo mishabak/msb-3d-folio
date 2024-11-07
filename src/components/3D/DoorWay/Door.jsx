@@ -56,7 +56,11 @@ function Door({
     doorNo,
   });
   return (
-    <group onClick={handleClick}>
+    <group
+      onPointerEnter={() => (document.body.style.cursor = "pointer")}
+      onPointerLeave={() => (document.body.style.cursor = "auto")}
+      onClick={handleClick}
+    >
       <DoorPhysics nodes={nodes} DOOR_POSITION={DOOR_POSITION} />
       <animated.group
         position={[-1.107, -0.065, -2.332]}
