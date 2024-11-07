@@ -30,17 +30,17 @@ function BackgroundMusic({ name, audio, initialize }) {
     }, fadeInterval);
   };
 
-  // useEffect(() => {
-  //   if (sd == name) {
-  //     triggerBgmusic();
-  //   }
-  //   return () => {
-  //     if (afterPlaying.current) {
-  //       fadeOutAudio();
-  //       afterPlaying.current = false;
-  //     }
-  //   };
-  // }, [sd]);
+  useEffect(() => {
+    if (sd == name) {
+      triggerBgmusic();
+    }
+    return () => {
+      if (afterPlaying.current) {
+        fadeOutAudio();
+        afterPlaying.current = false;
+      }
+    };
+  }, [sd]);
 
   return <Fragment />;
 }
