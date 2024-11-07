@@ -1,12 +1,13 @@
 import { useSpring } from "@react-spring/three";
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selector_rooms } from "../../../features/js/selector";
+import { action_rooms } from "../../../features/js/slice";
 
 function useDoor({ closeDoorAudio, openDoorAudio, doorNo }) {
   const [DoorState, SetDoorState] = useState("DEFAULT");
   const isPuzzleSolved = useSelector(selector_rooms[`solvedPuzzle_${doorNo}`]);
-
+  const dispatch = useDispatch();
   const PREVENT_CLICK = useRef(false);
   const DOOR_POSITION = useRef(null);
   const [springs, api] = useSpring(() => ({
@@ -53,8 +54,15 @@ function useDoor({ closeDoorAudio, openDoorAudio, doorNo }) {
     }
   }, [DoorState]);
 
-
   const handleClick = () => {
+    if (!isPuzzleSolved) {
+      dispatch(
+        action_rooms.setCharacterMessenger({
+          visible: true,
+          text: "To unlock the door, you must first solve the puzzle!",
+        })
+      );
+    }
     if (isPuzzleSolved && !PREVENT_CLICK.current)
       SetDoorState((prev) => {
         if (prev == "OPEN") {
