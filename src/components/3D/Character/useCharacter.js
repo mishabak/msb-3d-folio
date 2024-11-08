@@ -52,7 +52,7 @@ function useCharacter() {
       
     if (movement.forward !== 0 || movement.turn !== 0) {
         if (!audio.isPlaying) {
-          audio.setVolume(0.2);
+          audio.setVolume(0.5);
           audio.play();
           audio.setLoop(true);
         }
