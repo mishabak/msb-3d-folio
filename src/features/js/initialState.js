@@ -14,4 +14,5 @@ export default {
     visible: false,
     text: "",
   },
+  isIntroPage:true,
 };

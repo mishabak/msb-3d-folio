@@ -11,7 +11,7 @@ export function GirlCharacter() {
   let typingOnce = true,
     leavingOnce = true;
   useFrame(() => {
-    if (!window.disableMovement) {
+    if (!window.disableMovement && !window.isIntroPage) {
       if (get().forward || get().backward || get().left || get().right) {
         if (get().backward) {
           if (actions["Walking"].timeScale == 1) {

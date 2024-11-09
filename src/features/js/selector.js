@@ -32,6 +32,8 @@ const characterMessenger = createSelector(
   (state) => state.characterMessenger
 );
 
+const isIntroPage = createSelector([rooms], (state) => state.isIntroPage);
+
 // Exporting selectors
 export const selector_rooms = {
   currentRoom,
@@ -39,4 +41,5 @@ export const selector_rooms = {
   contactRoomSounds,
   animateHolo1Text,
   characterMessenger,
+  isIntroPage,
 };

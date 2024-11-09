@@ -3,7 +3,8 @@ import { selector_rooms } from "../../../features/js/selector";
 import { useSelector } from "react-redux";
 
 function BackgroundMusic({ name, audio, initialize }) {
-  const sd = useSelector(selector_rooms.currentRoom);
+  const currentRoom = useSelector(selector_rooms.currentRoom);
+  const isIntroPage = useSelector(selector_rooms.isIntroPage);
   const afterPlaying = useRef(false);
 
   const triggerBgmusic = async () => {
@@ -31,7 +32,7 @@ function BackgroundMusic({ name, audio, initialize }) {
   };
 
   useEffect(() => {
-    if (sd == name) {
+    if (currentRoom == name && !isIntroPage) {
       triggerBgmusic();
     }
     return () => {
@@ -40,7 +41,7 @@ function BackgroundMusic({ name, audio, initialize }) {
         afterPlaying.current = false;
       }
     };
-  }, [sd]);
+  }, [currentRoom, isIntroPage]);
 
   return <Fragment />;
 }

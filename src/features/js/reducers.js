@@ -16,4 +16,7 @@ export default {
     state.characterMessenger.visible = payload?.visible || false;
     state.characterMessenger.text = payload?.text || "";
   },
+  setIsIntroPage: (state, { payload }) => {
+    state.isIntroPage = payload;
+  },
 };

@@ -26,7 +26,7 @@ function useCharacter() {
     window.characterQuaternion = charRef?.current.quaternion;
     const movement = { forward: 0, turn: 0 };
 
-    if (!window.disableMovement) {
+    if (!window.disableMovement && !window.isIntroPage) {
       if (get().forward) movement.forward = 1;
       if (get().backward) movement.forward = -1;
       if (get().left) movement.turn = 1;
@@ -49,18 +49,18 @@ function useCharacter() {
       vel.x = 0;
       vel.z = 0;
     }
-      
+
     if (movement.forward !== 0 || movement.turn !== 0) {
-        if (!audio.isPlaying) {
-          audio.setVolume(0.5);
-          audio.play();
-          audio.setLoop(true);
-        }
-      } else {
-        if (audio.isPlaying) {
-          audio.stop();
-        }
+      if (!audio.isPlaying) {
+        audio.setVolume(0.5);
+        audio.play();
+        audio.setLoop(true);
       }
+    } else {
+      if (audio.isPlaying) {
+        audio.stop();
+      }
+    }
 
     rb.current.setLinvel(vel, true);
   }
