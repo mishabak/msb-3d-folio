@@ -27,7 +27,7 @@ function Index({ nodes, materials }) {
           doorNo={idx + 1}
           {...props}
         />
-        <Puzzle PuzzleAudio={PuzzleAudio} puzzleId={idx + 1} />
+        {idx == 0 && <Puzzle PuzzleAudio={PuzzleAudio} puzzleId={idx + 1} />}
         <DoorTitle titles={titles} />
       </group>
     )
