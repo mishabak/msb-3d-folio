@@ -1,23 +1,33 @@
-import {
-  OrbitControls,
-  KeyboardControls,
-  PerspectiveCamera,
-  useProgress,
-} from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { KeyboardControls, useProgress } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
 import usePhysicDebug from "./hooks/usePhysicDebug";
 import { KEYBOARD_MAP } from "./util/constants";
-import { Character } from "./components/3D";
-import Interior from "./features/Interior";
-import Room from "./features/Room";
 import "./App.css";
-import { Fragment, useEffect, useMemo, useState } from "react";
-import { Header, IntroPage } from "./components/2D";
+import { Fragment, lazy, Suspense, useEffect, useMemo, useState } from "react";
+import { Header } from "./components/2D";
 import { useSelector } from "react-redux";
 import { selector_rooms } from "./features/js/selector";
-window.isIntroPage = true;
+const Interior = lazy(() => import("./features/Interior"));
+const Character = lazy(() => import("./components/3D/Character"));
+const Room = lazy(() => import("./features/Room"));
+const IntroPage = lazy(() => import("./components/2D/Intro"));
+const Canvas = lazy(() =>
+  import("@react-three/fiber").then((module) => ({
+    default: module.Canvas,
+  }))
+);
+const PerspectiveCamera = lazy(() =>
+  import("@react-three/drei").then((module) => ({
+    default: module.PerspectiveCamera,
+  }))
+);
+const OrbitControls = lazy(() =>
+  import("@react-three/drei").then((module) => ({
+    default: module.OrbitControls,
+  }))
+);
 
+window.isIntroPage = true;
 function ThreeCanvas({ isIntroPage }) {
   const { debugMode } = usePhysicDebug();
 
@@ -26,12 +36,16 @@ function ThreeCanvas({ isIntroPage }) {
       <Fragment>
         <ambientLight castShadow receiveShadow intensity={0.8} />
         <directionalLight intensity={0.7} />
-        <OrbitControls />
-        <PerspectiveCamera makeDefault position={[-40, 5, 10]} fov={70} />
+        <Suspense>
+          <OrbitControls />
+          <PerspectiveCamera makeDefault position={[-40, 5, 10]} fov={70} />
+        </Suspense>
         <Physics debug={debugMode}>
-          <Character />
-          <Room />
-          <Interior />
+          <Suspense>
+            <Character />
+            <Room />
+            <Interior />
+          </Suspense>
         </Physics>
       </Fragment>
     ),
@@ -72,7 +86,8 @@ function App() {
   return (
     <main className="h-screen w-screen">
       <Header />
-      {isIntroPage && <IntroPage isLoaded={isLoaded} />}
+      <Suspense>{isIntroPage && <IntroPage isLoaded={isLoaded} />}</Suspense>
+
       {threeCanvas}
     </main>
   );
