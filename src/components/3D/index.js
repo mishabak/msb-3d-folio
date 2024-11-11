@@ -1,4 +1,4 @@
-export { default as DoorWay } from "./DoorWay";
+export { default as DoorWay } from "./DoorWay/Sensitive";
 export { default as Building } from "./Building";
 export { default as Character } from "./Character";
 export { default as ContactRoom } from "./ContactRoom";
