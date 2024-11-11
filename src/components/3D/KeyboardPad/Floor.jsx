@@ -1,6 +1,6 @@
 import { TOUCH_PAD_PROPERTY } from "../../../util/constants";
 import CustomMesh from "./CustomMesh";
-import useKeyboardPad from "./usekeyBoardPad";
+import useKeyboardPad from "./useKeyboardPad";
 import { RigidBody } from "@react-three/rapier";
 
 function Floor({ nodes, materials, actions }) {
