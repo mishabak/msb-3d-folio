@@ -1,5 +1,5 @@
+import CustomField from "./Field";
 import HolographicWrapper from "./HolographicWrapper";
-import Input from "./Input";
 
 const Form = () => {
   return (
@@ -10,8 +10,8 @@ const Form = () => {
       <h4 className="text-[48px] mb-9 drop-shadow-[0px_0px_3px_#86e9c3]">
         Contact me
       </h4>
-      <Input label={"Full Name"} className="mt-9" />
-      <Input label={"Email"} className="mt-9" />
+      <CustomField label={"Full Name"} className="w-[900px] mt-9"/>
+      <CustomField label={"Email"} className="w-[900px] mt-9"/>
     </div>
   );
 };

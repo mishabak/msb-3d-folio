@@ -1,12 +1,18 @@
+import CustomField from "./Field";
 import HolographicWrapper from "./HolographicWrapper";
-import TextArea from "./TextArea";
 const Form = () => {
   return (
     <div
       className="
   text-[45px] drop-shadow-[0px_0px_3px_#86e9c3] font-thin flex flex-col items-center justify-center h-full"
     >
-      <TextArea label={"Message"} />
+      <CustomField
+        isFor="TEXT_AREA"
+        label={"Message"}
+        className="w-[650px]"
+        mlLabel={14}
+        height={300}
+      />
     </div>
   );
 };
