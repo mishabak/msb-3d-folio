@@ -13,6 +13,12 @@ export default {
   characterMessenger: {
     visible: false,
     text: "",
+    forFieldError:false,
   },
-  isIntroPage:true,
+  isIntroPage: true,
+  contactDetails: {
+    fullName: { value: "", isValid: null },
+    email: { value: "", isValid: null },
+    message: { value: "", isValid: null },
+  },
 };

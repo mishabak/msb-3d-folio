@@ -15,7 +15,10 @@ function Messenger() {
     config: { duration: 100 },
   }));
   const dispatch = useDispatch();
-  const debounse = useDebounce(characterMessenger, 2500);
+  const debounse = useDebounce(
+    characterMessenger,
+    characterMessenger.forFieldError ? 5500 : 2500
+  );
 
   useEffect(() => {
     if (debounse[0]?.visible) {
@@ -41,15 +44,19 @@ function Messenger() {
         name="Messenger"
         geometry={nodes.Messenger.geometry}
         rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-        scale={[0.085, 0.155, 0.155]}
+        scale={[
+          characterMessenger.forFieldError ? 0.115 : 0.085,
+          0.155,
+          characterMessenger.forFieldError ? 0.185 : 0.155,
+        ]}
       >
         <meshStandardMaterial color={"white"} />
       </mesh>
       <Text
-        maxWidth={0.3}
+        maxWidth={characterMessenger.forFieldError ? 0.4 : 0.3}
         color={"blue"}
         outlineWidth={0.0002}
-        fontSize={0.028}
+        fontSize={characterMessenger.forFieldError ? 0.025 : 0.028}
         scale={0.8}
         position={[0, 0, -0.001]}
         rotation={[0, Math.PI, 0]}

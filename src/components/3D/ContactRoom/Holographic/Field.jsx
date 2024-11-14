@@ -15,27 +15,11 @@ function CustomField({
   isFor = types.input,
   name = "",
 }) {
-  const fieldHandlers = useField({ isFor, name });
-
-  const Child = () => {
-    return isFor == types.input ? (
-      <>
-        <Img src="/images/input.svg" />
-        <input
-          {...fieldHandlers}
-          className={`w-full h-full px-7 py-2 ${cmnCls}`}
-        />
-      </>
-    ) : isFor == types.textarea ? (
-      <>
-        <Img src="/images/textArea.svg" />
-        <textarea
-          {...fieldHandlers}
-          className={`w-[550px] h-[200px] resize-none ${cmnCls}`}
-        />
-      </>
-    ) : null;
-  };
+  const { isValid, onBlur, onChange, onFocus, value } = useField({
+    isFor,
+    name,
+  });
+  const fieldAttr = { onBlur, onChange, onFocus, value };
 
   return (
     <div className={className}>
@@ -45,9 +29,29 @@ function CustomField({
         {label}
       </label>
       <div
-        className={`relative w-full  h-[${height}px] flex flex-col justify-center items-center`}
+        className={`relative w-full  h-[${height}px] flex flex-col justify-center items-center duration-500  ${
+          isValid === false ? "invert contrast-[3]" : ""
+        }`}
       >
-        <Child />
+        {isFor == types.input ? (
+          <>
+            <Img src="/images/input.svg" />
+            <input
+              type="text"
+              {...fieldAttr}
+              className={`w-full h-full px-7 py-2 ${cmnCls}`}
+            />
+          </>
+        ) : isFor == types.textarea ? (
+          <>
+            <Img src="/images/textArea.svg" />
+            <textarea
+              type="text"
+              {...fieldAttr}
+              className={`w-[550px] h-[200px] resize-none ${cmnCls}`}
+            />
+          </>
+        ) : null}
       </div>
     </div>
   );

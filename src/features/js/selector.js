@@ -33,6 +33,19 @@ const characterMessenger = createSelector(
 );
 
 const isIntroPage = createSelector([rooms], (state) => state.isIntroPage);
+const fullName = createSelector(
+  [rooms],
+  (state) => state.contactDetails.fullName
+);
+const email = createSelector([rooms], (state) => state.contactDetails.email);
+const message = createSelector(
+  [rooms],
+  (state) => state.contactDetails.message
+);
+const allContactDetails = createSelector(
+  [rooms],
+  (state) => state.contactDetails
+);
 
 // Exporting selectors
 export const selector_rooms = {
@@ -41,5 +54,7 @@ export const selector_rooms = {
   contactRoomSounds,
   animateHolo1Text,
   characterMessenger,
+  contactDetails: { fullName, email, message },
+  allContactDetails,
   isIntroPage,
 };

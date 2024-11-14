@@ -1,18 +1,22 @@
 import CustomField from "./Field";
 import HolographicWrapper from "./HolographicWrapper";
+import SubmitBtn from "./SubmitBtn";
+
 const Form = () => {
   return (
     <div
       className="
-  text-[45px] drop-shadow-[0px_0px_3px_#86e9c3] font-thin flex flex-col items-center justify-center h-full"
+  text-[45px]  font-thin flex flex-col items-center justify-center h-full"
     >
       <CustomField
         isFor="TEXT_AREA"
         label={"Message"}
+        name="message"
         className="w-[650px]"
         mlLabel={14}
         height={300}
       />
+      <SubmitBtn />
     </div>
   );
 };

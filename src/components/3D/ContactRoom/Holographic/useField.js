@@ -1,5 +1,6 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { action_rooms } from "../../../../features/js/slice";
+import { selector_rooms } from "../../../../features/js/selector";
 
 const msg = [
   "Please wait for the keyboard",
@@ -9,6 +10,7 @@ const msg = [
 
 function useField({ isFor, name }) {
   const dispatch = useDispatch();
+  const fieldProperty = useSelector(selector_rooms.contactDetails[name]);
 
   function handleCharacterMsg(index) {
     dispatch(
@@ -19,7 +21,34 @@ function useField({ isFor, name }) {
     );
   }
 
-  function onChange() {}
+  function validate(value) {
+    if (value.length == 0) {
+      return false;
+    } else if (name == "message") {
+      return /^[A-Za-z\s]{8,124}$/.test(value);
+    } else if (name == "email") {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    } else if (name == "fullName") {
+      return /^[A-Za-z\s]{2,24}$/.test(value);
+    } else {
+      return false;
+    }
+  }
+
+  function onChange(event) {
+    console.log(fieldProperty.isValid, "event.target.value");
+
+    dispatch(
+      action_rooms.setContactDetails({
+        value: event.target.value,
+        name,
+        isValid:
+          fieldProperty.isValid !== null
+            ? validate(event.target.value)
+            : fieldProperty.isValid,
+      })
+    );
+  }
 
   function onBlur() {
     window.disableMovement = false;
@@ -49,7 +78,14 @@ function useField({ isFor, name }) {
     event.target.blur();
   }
 
-  return { onChange, onBlur, onFocus, type: "text", name: name };
+  return {
+    onChange,
+    onBlur,
+    onFocus,
+    type: "text",
+    value: fieldProperty.value,
+    isValid: fieldProperty.isValid,
+  };
 }
 
 export default useField;

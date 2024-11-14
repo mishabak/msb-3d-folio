@@ -15,8 +15,22 @@ export default {
   setCharacterMessenger: (state, { payload }) => {
     state.characterMessenger.visible = payload?.visible || false;
     state.characterMessenger.text = payload?.text || "";
+    state.characterMessenger.forFieldError = payload?.forFieldError || false;
   },
   setIsIntroPage: (state, { payload }) => {
     state.isIntroPage = payload;
+  },
+  setContactDetails: (state, { payload }) => {
+    if (payload.name) {
+      state.contactDetails[payload.name] = {
+        value: payload.value || "",
+        isValid: payload?.isValid,
+      };
+    }
+  },
+  setContactIsValid: (state, { payload }) => {
+    state.contactDetails.fullName.isValid = payload?.fullName;
+    state.contactDetails.email.isValid = payload?.email;
+    state.contactDetails.message.isValid = payload?.message;
   },
 };
