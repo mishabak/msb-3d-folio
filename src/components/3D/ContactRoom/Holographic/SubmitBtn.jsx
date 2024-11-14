@@ -38,7 +38,8 @@ function SubmitBtn() {
       }`;
       handleCharacterMsg(text);
     } else {
-      console.log("Can submitt...");
+      handleCharacterMsg("Thank you 🙂");
+      dispatch(action_rooms.resetContactDetails());
     }
   };
 

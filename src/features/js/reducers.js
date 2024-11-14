@@ -33,4 +33,11 @@ export default {
     state.contactDetails.email.isValid = payload?.email;
     state.contactDetails.message.isValid = payload?.message;
   },
+  resetContactDetails: (state) => {
+    state.contactDetails = {
+      fullName: { value: "", isValid: null },
+      email: { value: "", isValid: null },
+      message: { value: "", isValid: null },
+    };
+  },
 };
