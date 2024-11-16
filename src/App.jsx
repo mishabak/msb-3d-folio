@@ -1,31 +1,21 @@
-import { KeyboardControls, useProgress } from "@react-three/drei";
+import {
+  KeyboardControls,
+  OrbitControls,
+  useProgress,
+  PerspectiveCamera,
+} from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import usePhysicDebug from "./hooks/usePhysicDebug";
 import { KEYBOARD_MAP } from "./util/constants";
 import "./App.css";
 import { Fragment, lazy, Suspense, useEffect, useMemo, useState } from "react";
-import { Header } from "./components/2D";
+import { Header, IntroPage } from "./components/2D";
 import { useSelector } from "react-redux";
 import { selector_rooms } from "./features/js/selector";
 const Interior = lazy(() => import("./features/Interior"));
 const Character = lazy(() => import("./components/3D/Character"));
-const Room = lazy(() => import("./features/Room"));
-const IntroPage = lazy(() => import("./components/2D/Intro"));
-const Canvas = lazy(() =>
-  import("@react-three/fiber").then((module) => ({
-    default: module.Canvas,
-  }))
-);
-const PerspectiveCamera = lazy(() =>
-  import("@react-three/drei").then((module) => ({
-    default: module.PerspectiveCamera,
-  }))
-);
-const OrbitControls = lazy(() =>
-  import("@react-three/drei").then((module) => ({
-    default: module.OrbitControls,
-  }))
-);
+import Room from "./features/Room";
 
 window.isIntroPage = true;
 function ThreeCanvas({ isIntroPage }) {
@@ -41,9 +31,9 @@ function ThreeCanvas({ isIntroPage }) {
           <PerspectiveCamera makeDefault position={[-40, 5, 10]} fov={70} />
         </Suspense>
         <Physics debug={debugMode}>
+          <Room />
           <Suspense>
             <Character />
-            <Room />
             <Interior />
           </Suspense>
         </Physics>
@@ -86,8 +76,7 @@ function App() {
   return (
     <main className="h-screen w-screen">
       <Header />
-      <Suspense>{isIntroPage && <IntroPage isLoaded={isLoaded} />}</Suspense>
-
+      {isIntroPage && <IntroPage isLoaded={isLoaded} />}
       {threeCanvas}
     </main>
   );
