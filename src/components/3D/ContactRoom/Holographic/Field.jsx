@@ -29,7 +29,7 @@ function CustomField({
         {label}
       </label>
       <div
-        className={`relative w-full  h-[${height}px] flex flex-col justify-center items-center duration-500  ${
+        className={`relative w-full  h-[${height}px] flex flex-col justify-center items-center duration-500 ${
           isValid === false ? "invert contrast-[3]" : ""
         }`}
       >
@@ -39,7 +39,7 @@ function CustomField({
             <input
               type="text"
               {...fieldAttr}
-              className={`w-full h-full px-7 py-2 ${cmnCls}`}
+              className={`w-full h-[99px] px-7 py-2 ${cmnCls}`}
             />
           </>
         ) : isFor == types.textarea ? (
