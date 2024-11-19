@@ -55,7 +55,7 @@ function Index({ isLoaded }) {
     >
       <div
         ref={cursorRef}
-        className="bg-[#0080750e] w-10 h-10 rounded-full fixed z-10 top-0 left-0 duration-500 shadow-sm shadow-white backdrop-blur-sm"
+        className="bg-[#0080750e] hidden lg:block w-10 h-10 rounded-full fixed z-10 top-0 left-0 duration-500 shadow-sm shadow-white backdrop-blur-sm"
       />
       <div className="h-full w-1/5 percepective-350">
         <div

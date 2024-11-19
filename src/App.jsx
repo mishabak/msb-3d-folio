@@ -1,6 +1,6 @@
 import { selector_rooms } from "./features/js/selector";
 import { KeyboardControls } from "@react-three/drei";
-import { Header, IntroPage } from "./components/2D";
+import { Header, IntroPage, Orientation } from "./components/2D";
 import { KEYBOARD_MAP } from "./util/constants";
 import { DreiProps } from "./components/3D";
 import { Canvas } from "@react-three/fiber";
@@ -16,6 +16,7 @@ function App() {
   const isIntroPage = useSelector(selector_rooms.isIntroPage);
   return (
     <main>
+      <Orientation />
       <Header />
       {isIntroPage ? (
         <IntroPage isLoaded={true} />

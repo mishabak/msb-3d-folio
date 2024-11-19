@@ -30,7 +30,7 @@ function Index() {
   }, []);
 
   return (
-    <header className="fixed top-0 z-[2] w-full py-4  border-black lg:backdrop-blur-[24px] px-4 lg:bg-[#30303041] flex justify-between">
+    <header className="fixed top-0 z-[2] w-full py-4  border-black lg:backdrop-blur-[24px] px-4 lg:bg-[#30303041] flex justify-between items-center">
       <h1 className="font-thin text-white text-xs sm:text-sm lg:text-md">
         MISHAB AK &nbsp;&nbsp;|&nbsp;&nbsp; Full Stack Developer
       </h1>

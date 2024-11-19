@@ -2,7 +2,7 @@ function ScreenSize({ max = true, onClick = () => {} }) {
   return max ? (
     <svg
       onClick={onClick}
-      className="cursor-pointer"
+      className="cursor-pointer mr-2"
       width="19"
       height="19"
       viewBox="0 0 19 19"
@@ -17,7 +17,7 @@ function ScreenSize({ max = true, onClick = () => {} }) {
   ) : (
     <svg
       onClick={onClick}
-      className="cursor-pointer"
+      className="cursor-pointer mr-2"
       width="17"
       height="17"
       viewBox="0 0 17 17"
