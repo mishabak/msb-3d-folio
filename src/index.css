@@ -23,6 +23,12 @@ main {
     z-index: 1;
 }
 
+.stick-animation {
+    opacity: 0;
+    animation: canvas-transition 1.2s forwards;
+    animation-delay: 2s;
+}
+
 @keyframes canvas-transition {
     from {
         opacity: 0;

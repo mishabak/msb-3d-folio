@@ -22,12 +22,12 @@ function App() {
       ) : (
         <Fragment>
           <Stick
-            className="w-[62px] h-[145px] left-0 ml-6 mb-3"
+            className="w-[62px] h-[145px] left-0 ml-6 mb-3 stick-animation"
             idA="forward"
             idB="backward"
           />
           <Stick
-            className="right-0 -rotate-90 w-[62px] h-[145px] mr-16"
+            className="right-0 -rotate-90 w-[62px] h-[145px] mr-16 stick-animation"
             idA="left"
             idB="right"
           />
