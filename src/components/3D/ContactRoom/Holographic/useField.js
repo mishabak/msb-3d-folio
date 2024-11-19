@@ -36,8 +36,6 @@ function useField({ isFor, name }) {
   }
 
   function onChange(event) {
-    console.log(fieldProperty.isValid, "event.target.value");
-
     dispatch(
       action_rooms.setContactDetails({
         value: event.target.value,

@@ -7,6 +7,8 @@ import { Canvas } from "@react-three/fiber";
 import { useSelector } from "react-redux";
 import Models from "./features/Models";
 import "./App.css";
+import { Fragment } from "react";
+import { Stick } from "./components/icons";
 
 window.isIntroPage = true;
 
@@ -18,12 +20,24 @@ function App() {
       {isIntroPage ? (
         <IntroPage isLoaded={true} />
       ) : (
-        <KeyboardControls map={KEYBOARD_MAP}>
-          <Canvas className="canvas-animation">
-            <DreiProps />
-            <Models />
-          </Canvas>
-        </KeyboardControls>
+        <Fragment>
+          <Stick
+            className="w-[62px] h-[145px] left-0 ml-6 mb-3"
+            idA="forward"
+            idB="backward"
+          />
+          <Stick
+            className="right-0 -rotate-90 w-[62px] h-[145px] mr-16"
+            idA="left"
+            idB="right"
+          />
+          <KeyboardControls map={KEYBOARD_MAP}>
+            <Canvas className="canvas-animation">
+              <DreiProps />
+              <Models />
+            </Canvas>
+          </KeyboardControls>
+        </Fragment>
       )}
     </main>
   );
