@@ -6,6 +6,11 @@ body {
     background-color: black;
 }
 
+main {
+    height: 100vh;
+    width: 100vw;
+}
+
 .canvas-animation {
     width: 100%;
     height: 100%;

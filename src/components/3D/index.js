@@ -11,3 +11,4 @@ export { default as KeyboardPad } from "./KeyboardPad";
 export { default as ChainBarrier } from "./ChainBarrier";
 export { default as SignBoard } from "./SignBoard";
 export { default as BallCycle } from "./BallCycle";
+export { default as DreiProps } from "./DreiProps";
