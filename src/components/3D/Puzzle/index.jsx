@@ -21,7 +21,7 @@ export default function Puzzle({ puzzleId, setDoorUnLock, PuzzleAudio }) {
       position={[-3, 0.3, -2.5]}
       rotation={[-Math.PI / 2, 0, 0]}
     >
-      <PuzzleFrame {...chldProps} />
+      <PuzzleFrame puzzleId={puzzleId} {...chldProps} />
       <group ref={groupRef}>
         {shuffledPuzzle.length > 0 &&
           shuffledPuzzle.map((data, idx) => (
@@ -36,6 +36,7 @@ export default function Puzzle({ puzzleId, setDoorUnLock, PuzzleAudio }) {
       </group>
       <mesh
         ref={EmptyRef}
+        visible={false}
         name="empty_position"
         position={EmptyPiece}
         scale={[0.076, 0.076, 0.008]}

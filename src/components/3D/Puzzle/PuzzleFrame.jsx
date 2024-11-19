@@ -1,23 +1,15 @@
-function PuzzleFrame({ nodes, materials }) {
+function PuzzleFrame({ nodes, materials, puzzleId }) {
   return (
     <group position={[0.159, 0.31, -0.019]} scale={[0.25, 0.25, 0.019]}>
+      <mesh geometry={nodes.Cube001.geometry}>
+        <meshBasicMaterial color={"white"} />
+      </mesh>
+      <mesh geometry={nodes.Cube001_1.geometry}>
+        <meshBasicMaterial color={"white"} />
+      </mesh>
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube001.geometry}
-        material={materials.PuzzileFrame}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube001_1.geometry}
-        material={materials.Material}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.Cube001_2.geometry}
-        material={materials.Puzzle_image_1}
+        material={materials[`Puzzle_image_${puzzleId}`]}
       />
     </group>
   );
