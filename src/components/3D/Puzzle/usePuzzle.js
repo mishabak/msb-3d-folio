@@ -12,9 +12,12 @@ function usePuzzle({ puzzleId, PuzzleAudio }) {
   const EmptyPiece = [0.32, 0.148, 0];
   const EmptyRef = useRef();
   const groupRef = useRef();
-
+  let preventClk = false;
   // when puzzle piece click -->>
   const handleClick = (e, play) => {
+    if (preventClk || PuzzleAudio?.audio?.isPlaying) return;
+    preventClk = true;
+
     const { position } = e.eventObject;
     const emptyPos = EmptyRef.current.position;
     const isSameX = position.x === emptyPos.x;
@@ -48,7 +51,10 @@ function usePuzzle({ puzzleId, PuzzleAudio }) {
             action_rooms.setPuzzleSolved({ id: puzzleId, value: false })
           );
         }
+        preventClk = false;
       });
+    } else {
+      preventClk = false;
     }
   };
 
