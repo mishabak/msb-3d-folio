@@ -1,83 +1,63 @@
 import {
   KeyboardControls,
   OrbitControls,
-  useProgress,
   PerspectiveCamera,
 } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { Physics } from "@react-three/rapier";
+import { Canvas, useThree } from "@react-three/fiber";
 import usePhysicDebug from "./hooks/usePhysicDebug";
 import { KEYBOARD_MAP } from "./util/constants";
+import { Physics } from "@react-three/rapier";
 import "./App.css";
-import { Fragment, lazy, Suspense, useEffect, useMemo, useState } from "react";
+import { Fragment, lazy, Suspense, useEffect, useMemo } from "react";
+import { selector_rooms } from "./features/js/selector";
 import { Header, IntroPage } from "./components/2D";
 import { useSelector } from "react-redux";
-import { selector_rooms } from "./features/js/selector";
-const Interior = lazy(() => import("./features/Interior"));
-const Character = lazy(() => import("./components/3D/Character"));
 import Room from "./features/Room";
 
-window.isIntroPage = true;
-function ThreeCanvas({ isIntroPage }) {
-  const { debugMode } = usePhysicDebug();
+const Interior = lazy(() => import("./features/Interior"));
+const Character = lazy(() => import("./components/3D/Character"));
 
-  const canvasChild = useMemo(
-    () => (
+window.isIntroPage = true;
+function ThreeCanvas() {
+  const { debugMode } = usePhysicDebug();
+  const canvasChild = useMemo(() => {
+    return (
       <Fragment>
-        <ambientLight castShadow receiveShadow intensity={0.8} />
-        <directionalLight intensity={0.7} />
-        <Suspense>
-          <OrbitControls />
-          <PerspectiveCamera makeDefault position={[-40, 5, 10]} fov={70} />
+        <ambientLight intensity={0.6} />
+        <directionalLight intensity={0.5} />
+        <Suspense fallback={null}>
+          <OrbitControls enabled={false} />
+          <PerspectiveCamera makeDefault position={[-15, 1.747, 10]} fov={55} />
         </Suspense>
         <Physics debug={debugMode}>
           <Room />
-          <Suspense>
+          <Suspense fallback={null}>
             <Character />
             <Interior />
           </Suspense>
         </Physics>
       </Fragment>
-    ),
-    []
-  );
+    );
+  }, [debugMode]);
 
-  return (
-    <KeyboardControls map={KEYBOARD_MAP}>
-      <Canvas
-        className={`${!isIntroPage ? "canvas-animation" : ""}`}
-        style={{
-          backgroundColor: "black",
-          visibility: !isIntroPage ? "visible" : "hidden",
-          position: "fixed",
-          zIndex: 1,
-        }}
-      >
-        {canvasChild}
-      </Canvas>
-    </KeyboardControls>
-  );
+  return canvasChild;
 }
 
 function App() {
-  const [isLoaded, setIsLoaded] = useState(false);
   const isIntroPage = useSelector(selector_rooms.isIntroPage);
-  const { progress } = useProgress();
-
-  useEffect(() => {
-    progress === 100 && setIsLoaded(true);
-  }, [progress]);
-
-  const threeCanvas = useMemo(
-    () => <ThreeCanvas isIntroPage={isIntroPage} />,
-    [isIntroPage]
-  );
 
   return (
     <main className="h-screen w-screen">
       <Header />
-      {isIntroPage && <IntroPage isLoaded={isLoaded} />}
-      {threeCanvas}
+      {isIntroPage ? (
+        <IntroPage isLoaded={true} />
+      ) : (
+        <KeyboardControls map={KEYBOARD_MAP}>
+          <Canvas className="canvas-animation">
+            <ThreeCanvas />
+          </Canvas>
+        </KeyboardControls>
+      )}
     </main>
   );
 }

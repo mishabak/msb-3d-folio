@@ -55,7 +55,8 @@ function Wave1() {
 function Wave2() {
   return (
     <svg
-      width="844"
+      style={{width:"calc(100vw - 70%)"}}
+      // width="844"
       height="217"
       viewBox="0 0 844 217"
       fill="none"

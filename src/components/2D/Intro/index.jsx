@@ -39,6 +39,14 @@ function Index({ isLoaded }) {
     };
   }, []);
 
+  function handleBtnClick() {
+    if (isLoaded) {
+      const el = document.documentElement;
+      if (el.requestFullscreen) el.requestFullscreen();
+      setAnimation(true);
+    }
+  }
+
   return (
     <div
       className={`h-full w-full bg-white  text-white flex justify-between introPage ${
@@ -78,9 +86,7 @@ function Index({ isLoaded }) {
         >
           <button
             className=" bg-[#d10b4b] w-[300px] py-4 ml-auto mr-auto mt-auto text-white font-semibold rounded-md animate-pulse"
-            onClick={() => {
-              setAnimation(true);
-            }}
+            onClick={handleBtnClick}
           >
             {isLoaded ? "START " : "LOADING..."}
           </button>
@@ -129,7 +135,7 @@ function Index({ isLoaded }) {
 
               <li className="text-[16px] font-thin mt-3 pl-5">
                 Solve the puzzle to unlock the door! Click on the door with your
-                mouse pointer to open it once the puzzle is completed.
+                mouse pointer to open it. once the puzzle is completed.
               </li>
             </ul>
           </div>
