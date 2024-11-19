@@ -43,12 +43,12 @@ function useKeyboardAudio() {
   }
 
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyPress);
-    window.addEventListener("keyup", handleKeyUp);
+    document.addEventListener("keydown", handleKeyPress);
+    document.addEventListener("keyup", handleKeyUp);
 
     return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-      window.removeEventListener("keyup", handleKeyUp);
+      document.removeEventListener("keydown", handleKeyPress);
+      document.removeEventListener("keyup", handleKeyUp);
     };
   }, [TypingKey]);
 
