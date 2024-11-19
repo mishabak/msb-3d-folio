@@ -12,9 +12,12 @@ function Index() {
   };
 
   useEffect(() => {
+    window.addEventListener("load", handleOrientation);
     window.addEventListener("orientationchange", handleOrientation);
-    return () =>
+    return () => {
       window.removeEventListener("orientationchange", handleOrientation);
+      window.removeEventListener("load", handleOrientation);
+    };
   }, []);
 
   return (
