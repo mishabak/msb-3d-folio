@@ -21,7 +21,7 @@ export default function Puzzle({ puzzleId, doorId, PuzzleAudio }) {
       position={[-3, 0.3, -2.5]}
       rotation={[-Math.PI / 2, 0, 0]}
     >
-      <PuzzleFrame puzzleId={puzzleId} {...chldProps} />
+      <PuzzleFrame puzzleId={puzzleId} doorId={doorId} {...chldProps} />
       <group ref={groupRef}>
         {shuffledPuzzle.length > 0 &&
           shuffledPuzzle.map((data, idx) => (

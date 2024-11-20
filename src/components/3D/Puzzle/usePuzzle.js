@@ -13,9 +13,10 @@ function usePuzzle({ doorId, PuzzleAudio }) {
   const EmptyRef = useRef();
   const groupRef = useRef();
   let preventClk = false;
+  let isSolved = false;
   // when puzzle piece click -->>
   const handleClick = (e, play) => {
-    if (preventClk || PuzzleAudio?.audio?.isPlaying) return;
+    if (preventClk || PuzzleAudio?.audio?.isPlaying || isSolved) return;
     preventClk = true;
 
     const { position } = e.eventObject;
@@ -45,11 +46,10 @@ function usePuzzle({ doorId, PuzzleAudio }) {
         });
 
         if (flag == 0) {
+          isSolved = true;
           dispatch(action_rooms.setPuzzleSolved({ id: doorId, value: true }));
         } else {
-          dispatch(
-            action_rooms.setPuzzleSolved({ id: doorId, value: false })
-          );
+          dispatch(action_rooms.setPuzzleSolved({ id: doorId, value: false }));
         }
         preventClk = false;
       });
