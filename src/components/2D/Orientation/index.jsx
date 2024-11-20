@@ -4,7 +4,7 @@ function Index() {
   const orientationRef = useRef(null);
 
   const handleOrientation = () => {
-    if (screen.orientation?.angle == 90 || screen.orientation?.angle == 270) {
+    if (window.screen.orientation?.type.includes("landscape")) {
       orientationRef.current.style.display = "none";
     } else {
       orientationRef.current.style.display = "flex";
@@ -12,8 +12,7 @@ function Index() {
   };
 
   useEffect(() => {
-    handleOrientation()
-    window.addEventListener("load", handleOrientation);
+    handleOrientation();
     window.addEventListener("orientationchange", handleOrientation);
     return () => {
       window.removeEventListener("orientationchange", handleOrientation);
