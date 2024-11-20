@@ -13,7 +13,6 @@ function Index({ isLoaded }) {
 
   const handleStart = () => {
     dispatch(action_rooms.setIsIntroPage(false));
-    window.isIntroPage = false;
   };
 
   useEffect(() => {

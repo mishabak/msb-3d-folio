@@ -7,13 +7,20 @@ import { Canvas } from "@react-three/fiber";
 import { useSelector } from "react-redux";
 import Models from "./features/Models";
 import "./App.css";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Stick } from "./components/icons";
 
 window.isIntroPage = true;
 
 function App() {
   const isIntroPage = useSelector(selector_rooms.isIntroPage);
+
+  useEffect(() => {
+    if (!isIntroPage) {
+      window.isIntroPage = false;
+    }
+  }, [isIntroPage]);
+
   return (
     <main>
       <Orientation />

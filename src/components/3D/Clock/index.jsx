@@ -1,4 +1,3 @@
-import { useSpring, animated } from "@react-spring/three";
 import { useGLTF } from "@react-three/drei";
 import { useEffect, useRef } from "react";
 import moment from "moment";
@@ -13,15 +12,6 @@ export default function Index({ position, rotation, scale }) {
   const InHour = fullRotationDif / 12;
   const start = 9.408;
   const end = 3.12;
-
-  const styles = useSpring({
-    loop: { reverse: true },
-    from: { rotation: [-0.2, 0, -Math.PI / 2] },
-    to: { rotation: [0.2, 0, -Math.PI / 2] },
-    config: {
-      duration: 1000,
-    },
-  });
 
   const setTime = () => {
     const date = moment();
@@ -51,40 +41,15 @@ export default function Index({ position, rotation, scale }) {
   return (
     <group position={position} rotation={rotation} scale={scale}>
       <mesh
-        ref={minuteRef}
-        castShadow
-        receiveShadow
-        geometry={nodes.Minute.geometry}
-        material={materials.Niddle}
-        position={[-0.128, 1.128, 0]}
-        rotation={[start, 0, 0]}
-        scale={[0.021, 0.326, 0.028]}
+        geometry={nodes.Frame.geometry}
+        material={materials.Clock}
+        position={[0, 1.127, -0.869]}
+        rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+        scale={[0.336, 0.061, 0.725]}
       />
       <mesh
-        castShadow
-        receiveShadow
-        ref={hourRef}
-        geometry={nodes.Hour.geometry}
-        material={materials.Niddle}
-        position={[-0.144, 1.128, 0]}
-        rotation={[start, 0, 0]}
-        scale={[0.021, 0.326, 0.028]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        ref={secondRef}
-        geometry={nodes.Second.geometry}
-        material={materials.Niddle}
-        position={[-0.111, 1.128, 0]}
-        rotation={[start, 0, 0]}
-        scale={[0.021, 0.326, 0.016]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.Bolt.geometry}
-        material={nodes.Bolt.material}
+        material={materials.Bolt}
         position={[0.183, 1.128, 0]}
         rotation={[0, 0, -Math.PI / 2]}
         scale={[0.013, 0.036, 0.013]}
@@ -94,35 +59,32 @@ export default function Index({ position, rotation, scale }) {
         rotation={[0, 0, -Math.PI / 2]}
         scale={[0.941, 0.027, 0.941]}
       >
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder_1.geometry}
-          material={materials.Digits}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder_2.geometry}
-          material={materials.Clock}
-        />
+        <mesh geometry={nodes.Clock_1.geometry} material={materials.Digits} />
+        <mesh geometry={nodes.Clock_2.geometry} material={materials.Clock} />
       </group>
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube.geometry}
-        material={materials.Clock}
-        position={[-0.085, 0.866, 0]}
-        scale={[0.088, 2.009, 1.355]}
+        ref={hourRef}
+        geometry={nodes.Hour.geometry}
+        material={materials.Niddle}
+        position={[-0.144, 1.128, 0]}
+        rotation={[-1.293, 0, 0]}
+        scale={[0.021, 0.326, 0.028]}
       />
-      <animated.mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cylinder001.geometry}
-        material={materials.Bell}
-        position={[-0.037, -0.496, 0.011]}
-        rotation={styles.rotation}
-        scale={[0.278, 0.017, 0.278]}
+      <mesh
+        ref={minuteRef}
+        geometry={nodes.Minute.geometry}
+        material={materials.Niddle}
+        position={[-0.128, 1.128, 0]}
+        rotation={[-2.233, 0, 0]}
+        scale={[0.021, 0.326, 0.028]}
+      />
+      <mesh
+        ref={secondRef}
+        geometry={nodes.Second.geometry}
+        material={materials.Niddle}
+        position={[-0.111, 1.128, 0]}
+        rotation={[3.062, 0, 0]}
+        scale={[0.021, 0.326, 0.016]}
       />
     </group>
   );
