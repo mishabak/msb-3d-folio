@@ -2,7 +2,7 @@ import PuzzlePiece from "./PuzzlePiece";
 import PuzzleFrame from "./PuzzleFrame";
 import usePuzzle from "./usePuzzle";
 
-export default function Puzzle({ puzzleId, setDoorUnLock, PuzzleAudio }) {
+export default function Puzzle({ puzzleId, doorId, PuzzleAudio }) {
   const {
     EmptyPiece,
     EmptyRef,
@@ -11,7 +11,7 @@ export default function Puzzle({ puzzleId, setDoorUnLock, PuzzleAudio }) {
     materials,
     nodes,
     shuffledPuzzle,
-  } = usePuzzle({ setDoorUnLock, puzzleId, PuzzleAudio });
+  } = usePuzzle({ doorId, PuzzleAudio });
   const chldProps = { materials, nodes };
 
   return (

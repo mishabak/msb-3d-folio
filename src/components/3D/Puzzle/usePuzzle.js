@@ -5,7 +5,7 @@ import { useGLTF } from "@react-three/drei";
 import { useDispatch } from "react-redux";
 import { action_rooms } from "../../../features/js/slice";
 
-function usePuzzle({ puzzleId, PuzzleAudio }) {
+function usePuzzle({ doorId, PuzzleAudio }) {
   const { nodes, materials } = useGLTF("./models/puzzle.glb");
   const dispatch = useDispatch();
   const [shuffledPuzzle, setShuffledPuzzle] = useState([]);
@@ -45,10 +45,10 @@ function usePuzzle({ puzzleId, PuzzleAudio }) {
         });
 
         if (flag == 0) {
-          dispatch(action_rooms.setPuzzleSolved({ id: puzzleId, value: true }));
+          dispatch(action_rooms.setPuzzleSolved({ id: doorId, value: true }));
         } else {
           dispatch(
-            action_rooms.setPuzzleSolved({ id: puzzleId, value: false })
+            action_rooms.setPuzzleSolved({ id: doorId, value: false })
           );
         }
         preventClk = false;
